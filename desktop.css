@@ -1,0 +1,36 @@
+.appIcon{
+
+	border-radius: 15px;
+	height: 100px;
+	width: 100px;
+	background-color: lightgray;
+	border-style:solid;
+	border-color: gray;
+	margin: 15px;
+	float: left;
+}
+.appIcon p{
+	font-family: helvetica;
+	font-size: 15px;
+	color: gray;
+	text-align: center;
+	float: bottom;
+}
+.appIcon img{
+
+	width: 90%;
+	height: 90%;
+	margin-top: 5%;
+}
+#appCon {
+	float: left;
+	width: 70%;
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: gray;
+	height: 100%;
+}
+#notifcationCon{
+	float: left;
+	width: 30%;
+}

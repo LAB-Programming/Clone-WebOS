@@ -1,0 +1,17 @@
+#loginWindow {
+	width: 40%;
+	margin: auto;
+	background-color: #DDDDDD;
+	border-radius: 10px;
+	padding: 20px;
+	float: center;
+}
+#imageHolder {
+	background-color: white;
+	border-radius: 10px;
+	margin-bottom: 20px; 
+	width: 260px;
+}
+h3 {
+	color: #999999;
+}
