@@ -45,7 +45,7 @@
 		}
 
 	}
-
+	//User classes
 	class User{
 
 		function __construct($userName, $name, $password_hash){
@@ -66,23 +66,64 @@
 		function set_home_folder($newFolder){
 			$this->HomeFolder = $newFolder;
 		}
-		function find_Load_page(){
-			if (isset($_GET["app"])){
-				echo "404";
-			}
-			else{
-				$this->Load_Desktop();
-			} 
-		}
-		function Load_Desktop(){
+	}
+	class Desktop{
+
+		function __construct($UserObject){
+			$this->List_Of_Apps_Array = $this->get_apps_data();
 			$this->Desktop = file_get_contents("desktop.html");
+
+			$this->Desktop = str_replace("<iconsGoHere>", $this->render_App_HTML($this->List_Of_Apps_Array), $this->Desktop);
+			//$this->Desktop = str_replace("<scriptGoseHere>", $this->render_App_JS($this->List_Of_Apps_Array), $this->Desktop);
+
 			echo $this->Desktop;
 		}
+		function get_apps_data(){
+			$appData = new DOMDocument();
+			$appData->load("home/bin/apps.xml");
+			$all_apps = $appData->getElementsByTagName("apps");
+			$appsArray = array();
+
+			foreach ($all_apps as $app){
+				$app_Names = $app->getElementsByTagName("name");
+				$app_Name = $app_Names->item(0)->nodeValue;
+
+				$Locations = $app->getElementsByTagName("url");
+				$Location = $Locations->item(0)->nodeValue;
+
+				$Location_of_icons = $app->getElementsByTagName("icon");
+				$Location_of_icon = $Location_of_icons->item(0)->nodeValue;
+
+				$appArray = array("name" => $app_Name, "location" => $Location, "icon" => $Location_of_icon); 
+				$appsArray = array_merge($appsArray, array($appArray));
+			}
+			return $appsArray;
+		}
+		function render_App_HTML($appArrays){
+			$app_icon_HTML = "";
+			foreach ($appArrays as $appArray){
+				$app_icon_HTML = $app_icon_HTML.'<div class="appIcon" id="'.$appArray["name"].'"><center><img src="home/bin/'.$appArray["icon"].'"
+				></center><p>'.$appArray["name"].'</p></div>';
+			}
+			return $app_icon_HTML;
+		}
+		function render_App_JS($appArrays){
+			$javascrpt_Loading_code = "";
+			foreach($appArrays as $appArray){
+				$javascrpt_Loading_code = $javascrpt_Loading_code.'$( "#'.$appArray["name"].'" ).click(function(){ window.location = "http://localhost/home/bin'.$appArray["location"].'"; });';
+			}
+			return $javascrpt_Loading_code;
+		}
 	}
+	//Loder starts the system
 	class Loader{
 
 		function __construct(){
 
+			$this->usersList = $this->LoadUsers();
+			$this->LoginLissener();
+		}
+		function LoadUsers(){
 			$this->usersList = array();
 			$connection = mysqli_connect("localhost","root","pies","CloneOSdata");
 
@@ -92,25 +133,23 @@
 				$this->User->set_user_rank($TableData['Promitions']);
 				$this->User->set_home_folder($TableData['HomeFolder']);
 
-				$this->usersList = array_merge($this->usersList, array($this->User->UserName => $this->User));
+				$this->CloneusersList = array_merge($this->usersList, array($this->User->UserName => $this->User));
 
 			}
 			mysqli_close($connection);
-			$this->LoginLissener();
+			return $this->CloneusersList;
 		}
 		function LoginLissener(){
+			//if the user cookie is set than it will atuicate the cookie (check if it is the databace) and than load the deskt top
 			if (isset($this->usersList[$_COOKIE['UserName']]) && $this->usersList[$_COOKIE['UserName']]->password_hash == hash("ripemd160", $_COOKIE['password_hash'])){
-				echo "your are loged in :)";
-				$this->usersList[$_COOKIE['UserName']]->find_Load_page();
+				$Desktop_Object = new Desktop($this->usersList[$_COOKIE['UserName']]);
 			}
-			
-			elseif (isset($_POST['UserName'])){
+			elseif (isset($_POST['UserName'])){//if the cookie is not set than 
   				if (isset($this->usersList[$_POST['UserName']]) && $this->usersList[$_POST['UserName']]->password_hash == hash("ripemd160", $_POST['password'])){
-  					echo "welcome ".$_POST['UserName'];
   					setcookie("UserName", $_POST['UserName']);
   					setcookie("password_hash", $_POST['password']);
-  					echo "cookie: ".$_COOKIE['UserName']." is set";
-  					$this->usersList[$_COOKIE['UserName']]->$find_Load_page();
+
+  					$Desktop_Object = new Desktop($this->usersList[$_COOKIE['UserName']]);
   				}
   			}
   			else{echo "403";}

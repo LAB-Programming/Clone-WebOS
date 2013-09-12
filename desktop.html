@@ -5,6 +5,20 @@
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile.structure-1.3.2.min.css" />
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+	<script>
+	//alert("i work");
+	$(document).ready(function() {
+		$(".appIcon").hover( function() {
+			//$(this).css( "background-color", "#AAAAAA" );
+			$(this).css( "background-image", "linear-gradient(to bottom right, lightgray 0%, #AAAAAA 100%)");
+		}, 
+		function() {
+			$(this).css( "background", "lightgray" );
+			//$(this).css( "border-color", "gray" );
+		});
+	//<scriptGoseHere>
+	});
+	</script>
 </head>
 <body>
 <div data-role="page" data-theme="a" id="mainPage">
@@ -14,7 +28,7 @@
 		
 		<div id="appCon">
 			<!--<div class="appIcon"><center><img src="todo.png"></center><p>todo</p></div>-->
-			<div class="appIcon"><center><img src="home/bin/icons/clone_icon.png"></center><p>todo</p></div>
+			<iconsGoHere>
 		</div>
 
 		<div id="notifcationCon">
