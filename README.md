@@ -33,4 +33,13 @@ Clone-WebOS
  
   you interact with the OS just like you would a web site.
 
+##Writing Apps
+
+###introduction
+
+   in CloneWebOS every app is it's own seporite web app. you can write you web app in php javascript or it could 
+   even be just a html file. you can get data about the user via a session varuable (in php) so you can make
+   dinamic apps that are diffrent for each user. 
+   
+
 
