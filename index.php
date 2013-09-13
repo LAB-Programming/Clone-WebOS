@@ -74,7 +74,7 @@
 			$this->Desktop = file_get_contents("desktop.html");
 
 			$this->Desktop = str_replace("<iconsGoHere>", $this->render_App_HTML($this->List_Of_Apps_Array), $this->Desktop);
-			//$this->Desktop = str_replace("<scriptGoseHere>", $this->render_App_JS($this->List_Of_Apps_Array), $this->Desktop);
+			$this->Desktop = str_replace("<scriptGoseHere>", $this->render_App_JS($this->List_Of_Apps_Array), $this->Desktop);
 
 			echo $this->Desktop;
 		}
@@ -110,7 +110,8 @@
 		function render_App_JS($appArrays){
 			$javascrpt_Loading_code = "";
 			foreach($appArrays as $appArray){
-				$javascrpt_Loading_code = $javascrpt_Loading_code.'$( "#'.$appArray["name"].'" ).click(function(){ window.location = "http://localhost/home/bin'.$appArray["location"].'"; });';
+				$javascrpt_Loading_code = $javascrpt_Loading_code.'$( "#'.$appArray["name"].'" ).click(function(){ 
+					window.location = "http://'.$_SERVER['SERVER_ADDR'].'/home/bin/'.$appArray["location"].'"; });';
 			}
 			return $javascrpt_Loading_code;
 		}

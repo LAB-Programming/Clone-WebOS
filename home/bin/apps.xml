@@ -2,7 +2,7 @@
 <apps>
 	<app>
 		<name>test</name>
-		<url>test/test.html/</url>
-		<icon>icon/clone_icon.png</icon>
+		<url>test/test.html</url>
+		<icon>icons/clone_icon.png</icon>
 	</app>
 </apps>
