@@ -27,7 +27,7 @@ Clone-WebOS
   
   * php
   * javascript
-  * jqeary
+  * jquery
   * html
   * css
  
@@ -35,11 +35,24 @@ Clone-WebOS
 
 ##Writing Apps
 
-###introduction
+###Introduction
 
-   in CloneWebOS every app is it's own seporite web app. you can write you web app in php javascript or it could 
+   In Clone WebOS every app is it's own seporite web app. you can write you web app in php javascript or it could 
    even be just a html file. you can get data about the user via a session varuable (in php) so you can make
    dinamic apps that are diffrent for each user. 
+   
+###How to add an app to the system
+   
+   An app, in Clone WebOS, is a web page.  To add an app to the system, you put the icon in home/bin/icons, and put
+   the rest of the files in the app's folder in the bin folder. Then, you have to add the app to the apps array in 
+   the apps.xml file. The entry for an app should look somewhat like this:
+      
+      <app>
+         <displayName>My Fancy New App!</displayName>
+         <name>my-fancy-app</name>
+         <url>appfolder/app.filetype</url>
+         <icon>icons/app_icon.png</icon>
+      </app>
    
 
 
