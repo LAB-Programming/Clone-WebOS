@@ -19,15 +19,15 @@ Clone-WebOS
    
 ###How the OS works
 
-  Clone WebOS is basically a website. To run, it needs a LAMP server (*L*inux, *A*pache, *M*ySQL, *P*HP) on the server. 
-  It can work with any client with a modern web browser and an internet connection. The main technologies used 
-  in Clone WebOS are:
-  
-  * php
-  * javascript
-  * jquery
-  * html
-  * css
+   Clone WebOS is basically a website. To run, it needs a LAMP server (*L*inux, *A*pache, *M*ySQL, *P*HP) on the server. 
+   It can work with any client with a modern web browser and an internet connection. The main technologies used 
+   in Clone WebOS are:
+   
+   - php
+   - javascript
+   - jquery
+   - html
+   - css
  
    You interact with the OS just like you would a web site. The way Clone WebOS is designed, each app is a webpage, and
    there is a dynamically-generated webpage that links all of the apps together and deals with authenticating logins
