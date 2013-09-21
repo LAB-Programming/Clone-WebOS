@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<openAbleApps>
+	<app>
+		<url>/var/www/home/bin/files/files.php</url>
+		<extention>NONE</extention>
+		<icon>/var/www/home/bin/icons/folder.png</icon>
+	</app>
+	<app>
+		<url>/var/www/home/bin/textEditer/textediter.php/</url>
+		<extention>.txt</extention>
+		<icon>/var/www/home/bin/icons/textediter.png</icon>
+</openAbleApps>
+
+

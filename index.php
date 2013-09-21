@@ -1,13 +1,13 @@
+<?php header('Content-type: text/html; charset=utf-8'); ?>
+
+<!DOCTYPE html>
 <html>
 <head>
-	<title>CloneOS</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="desktop.css">
 	<link rel="stylesheet" href="themes/CloneTheme.min.css" />
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile.structure-1.3.2.min.css" />
-	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
-</head>
-<body>
+	<link rel="stylesheet" href="jquery/jquery.mobile.structure-1.3.2.min.css" />
+	<script src="jquery/jquery-1.9.1.min.js"></script>
+	<script src="jquery/jquery.mobile-1.3.2.min.js"></script>
 
 <?php
 	
@@ -18,7 +18,7 @@
 			$system_file_Path = "home/".$userName."/";
 			$user_Password = hash("ripemd160", $password);
 
-			$New_User_connect = mysqli_connect("localhost","root","pies","CloneOSdata");
+			$New_User_connect = mysqli_connect("localhost","root","clone","CloneOSdata");
 			if (mysqli_connect_errno($New_User_connect)){
 				echo "MYSQL Error";
 			}
@@ -37,11 +37,7 @@
 		function CreateFileSystem($userName){
 			chdir("/var/www/home");
 			exec("mkdir ".$userName);
-			exec("mkdir ".$userName."/files/; mkdir ".$userName."/config/;");
-
-			//$apps_File = fopen($userName."/config/apps.txt/", "w");
-			//fclose($apps_File);
-			//copy("bin/defalt-apps.txt", $userName."/config/apps.txt/");
+			exec("mkdir ".$userName."/documents/; mkdir ".$userName."/images/;");
 		}
 
 	}
@@ -66,6 +62,14 @@
 		function set_home_folder($newFolder){
 			$this->HomeFolder = $newFolder;
 		}
+		function Create_Setion(){
+			session_start();
+
+			$_SESSION['UserName'] = $this->UserName;
+			$_SESSION['Promitions'] = $this->Promitions;
+			$_SESSION['Home'] = $this->HomeFolder;
+
+		}
 	}
 	class Desktop{
 
@@ -79,39 +83,49 @@
 			echo $this->Desktop;
 		}
 		function get_apps_data(){
-			$appData = new DOMDocument();
-			$appData->load("home/bin/apps.xml");
-			$all_apps = $appData->getElementsByTagName("apps");
+			$appXML = new DOMDocument();
+			$appXML->load("home/bin/apps.xml");
+			/*//echo '<script>'.$appData->getElementsByTagName('apps')->length.'</script>';
 			$appsArray = array();
+			//echo '<script>console.log("get_app_data [works]")</scirpt>';
+			//echo $appData->getElementsByTagName('apps')->length;
+			foreach($appData as $apps){
+				$appArray = array();
+				foreach($apps as $all_app){
+					$app_Name  = $all_app;*/
 
-			foreach ($all_apps as $app){
-				$app_Names = $app->getElementsByTagName("name");
-				$app_Name = $app_Names->item(0)->nodeValue;
-
-				$Locations = $app->getElementsByTagName("url");
-				$Location = $Locations->item(0)->nodeValue;
-
-				$Location_of_icons = $app->getElementsByTagName("icon");
-				$Location_of_icon = $Location_of_icons->item(0)->nodeValue;
-
-				$appArray = array("name" => $app_Name, "location" => $Location, "icon" => $Location_of_icon); 
+			$AppsDocEl = $appXML->documentElement;
+			$appsArray = array();
+			//error_log("----------------" . $AppsDocEl->childNodes->length);
+			for ($i = 0; $i < $AppsDocEl->childNodes->length; $i++) { //loop the number of times there are app tags in apps
+				$display_name = $AppsDocEl->getElementsByTagName("displayName")->item($i); //get the display name of the first app
+				if (gettype($display_name) == "NULL") break;
+				$app_Name = $AppsDocEl->getElementsByTagName("name")->item($i); //get the name of the first app
+				$Location = $AppsDocEl->getElementsByTagName("url")->item($i); //get the location of the first app
+				$Location_of_icon = $AppsDocEl->getElementsByTagName("icon")->item($i); //get the icon of the first app
+				//error_log("=====================" . $i);
+				$appArray = array("displayName" => $display_name->nodeValue, "name" => $app_Name->nodeValue, "location" => $Location->nodeValue, "icon" => $Location_of_icon->nodeValue); 
 				$appsArray = array_merge($appsArray, array($appArray));
 			}
+			//error_log('Apps array = "' . print_r($appsArray, true) . '"');
 			return $appsArray;
 		}
 		function render_App_HTML($appArrays){
 			$app_icon_HTML = "";
 			foreach ($appArrays as $appArray){
 				$app_icon_HTML = $app_icon_HTML.'<div class="appIcon" id="'.$appArray["name"].'"><center><img src="home/bin/'.$appArray["icon"].'"
-				></center><p>'.$appArray["name"].'</p></div>';
+				></center><p>'.$appArray["displayName"].'</p></div>';
 			}
 			return $app_icon_HTML;
 		}
 		function render_App_JS($appArrays){
 			$javascrpt_Loading_code = "";
 			foreach($appArrays as $appArray){
+				//$externalIp = "192.168.2.2";//file_get_contents('http://phihag.de/ip/');    HACK
+				//$javascrpt_Loading_code = $javascrpt_Loading_code.'$( "#'.$appArray["name"].'" ).click(function(){ 
+				//	window.location = "http://'.$_SERVER['SERVER_ADDR'].'/home/bin/'.$appArray["location"].'"; });';
 				$javascrpt_Loading_code = $javascrpt_Loading_code.'$( "#'.$appArray["name"].'" ).click(function(){ 
-					window.location = "http://'.$_SERVER['SERVER_ADDR'].'/home/bin/'.$appArray["location"].'"; });';
+					window.location = "home/bin/'.$appArray["location"].'"; });';
 			}
 			return $javascrpt_Loading_code;
 		}
@@ -126,7 +140,7 @@
 		}
 		function LoadUsers(){
 			$this->usersList = array();
-			$connection = mysqli_connect("localhost","root","pies","CloneOSdata");
+			$connection = mysqli_connect("localhost","root","clone","CloneOSdata");
 
 			$userTableData = $connection->query("SELECT * FROM users");
 			while($TableData = $userTableData->fetch_array(MYSQLI_USE_RESULT)){
@@ -143,6 +157,7 @@
 		function LoginLissener(){
 			//if the user cookie is set than it will atuicate the cookie (check if it is the databace) and than load the deskt top
 			if (isset($this->usersList[$_COOKIE['UserName']]) && $this->usersList[$_COOKIE['UserName']]->password_hash == hash("ripemd160", $_COOKIE['password_hash'])){
+				$this->usersList[$_COOKIE['UserName']]->Create_Setion();
 				$Desktop_Object = new Desktop($this->usersList[$_COOKIE['UserName']]);
 			}
 			elseif (isset($_POST['UserName'])){//if the cookie is not set than 
@@ -150,10 +165,11 @@
   					setcookie("UserName", $_POST['UserName']);
   					setcookie("password_hash", $_POST['password']);
 
+  					$this->usersList[$_COOKIE['UserName']]->Create_Setion();
   					$Desktop_Object = new Desktop($this->usersList[$_COOKIE['UserName']]);
   				}
   			}
-  			else{echo "403";}
+  			else{echo "403 <br> You are probably not logged in.  <a href=\"login.html\">Login</a>";}
   			unset($_COOKIE['UserName']);	
 		}
 	}

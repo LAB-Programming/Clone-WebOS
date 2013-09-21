@@ -1,0 +1,12 @@
+.file {
+	width: 95%;
+	margin:auto;
+}
+#header-panel{
+	width: 95%;
+	margin: auto;
+	height: 40px;
+	background-color: gray;
+	border-radius: 5px;
+	margin-bottom: 10px;
+}
