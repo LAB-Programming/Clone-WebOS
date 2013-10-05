@@ -25,12 +25,13 @@
 		}
 		function Render_GUI($File_Objects, $dir){
 			$this->GUI = file_get_contents("/var/www/home/bin/files/FilesGrafics.html");
-			$this->GUI = str_replace("<SERVERURL>", $_SERVER['SERVER_ADDR'], $this->GUI);
+			$this->GUI = str_replace("<SERVERURL>", "../../../index.php", $this->GUI);
+			$this->Dir_statement = '';
 
 			foreach($File_Objects as $File_Object){
 
-				$this->Dir_statement = $this->Dir_statement.'<li><a href="'.$File_Object->masterAppArray['URL'].'?Dir='.$dir.$File_Object->Dir_name.'/">
-				<img src="'.$File_Object->masterAppArray['icon'].'" class="ui-li-icon ui-corner-none">'.$File_Object->Dir_name.'
+				$this->Dir_statement = $this->Dir_statement.'<li><a href="'.$File_Object->Dir_type['location'].'?Dir='.$dir.$File_Object->Dir_name.'">
+				<img src="'.$File_Object->Dir_type['icon'].'" class="ui-li-icon ui-corner-none">'.$File_Object->Dir_name.'
 				</a><a class="delete" href="files.php?del='.$dir.''.$File_Object->Dir_name.'/" >Delete</a>';
 			}
 			$this->GUI = str_replace("<FilesHere>", $this->Dir_statement, $this->GUI); 
@@ -54,33 +55,29 @@
 				$this->extention = "NONE";
 			}
 			else{
-				$this->extention = $this->extention[1];
+				$this->extention = explode('/', $this->extention[1])[0];
 			}
 			return $this->extention;
 		}
 		function getDirOpen($extention){
 			$this->open_apps = new DOMDocument();
 			$this->open_apps->load("home/bin/files/openable.xml");
-			$this->allOpen = $this->open_apps->getElementsByTagName("openAbleApps");
 
-			$this->masterAppArray = array();
+			//$appsArray = array();
+			$this->AppsDocEl = $this->open_apps->documentElement;
 
-			foreach($this->allOpen as $this->appOpen){
-				$this->Urls = $this->appOpen->getElementsByTagName("url");
-				$this->Url = $this->Urls->item(0)->nodeValue;
-
-				$this->extentions = $this->appOpen->getElementsByTagName("extention");
-				$this->extention = $this->extentions->item(0)->nodeValue;
-
-				$this->icons = $this->appOpen->getElementsByTagName("icon");
-				$this->icon = $this->icons->item(0)->nodeValue;	
-
-				if ($this->extention == $extention){
-					$this->masterAppArray = array("URL" => $this->Url, "EXT" => $this->extention, "icon" => $this->icon);
+			for ($i = 0; $i < $this->AppsDocEl->childNodes->length; $i++){
+				if ($extention == $this->AppsDocEl->getElementsByTagName("extention")->item($i)->nodeValue){
+					//echo "<script>alert('i work')</script>";
+					$Location = $this->AppsDocEl->getElementsByTagName("url")->item($i); //get the location of the first app
+					$Location_of_icon = $this->AppsDocEl->getElementsByTagName("icon")->item($i); //get the icon of the first app
+					$appArray = array( "location" => $Location->nodeValue, "icon" => $Location_of_icon->nodeValue);
+					return $appArray;
+					//$appsArray = array_merge($appsArray, array($appArray));
 				}
+
 			}
 
-			return $this->masterAppArray;
 		}
 	}
 	$start = new fileSystem();
