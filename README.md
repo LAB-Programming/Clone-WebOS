@@ -1,4 +1,4 @@
-Clone-WebOS
+Clone-WebOS for pcDuino
 ===========
 
 
@@ -15,7 +15,8 @@ Clone-WebOS
    to get another computer it does not need to powerful; it can be a thin client that connects to the
    server that runs Clone-WebOS. Another limiting thing about Cloud OS's is that you can not realy do
    what you want with them such as write code, modify the OS itself, however with Clone WebOS, your OS
-   is run localy, so you can do any thing that you what with your server, and the software is open sorce. 
+   is run localy, so you can do any thing that you what with your server, and the software is open sorce.
+   This version of Clone WebOS comes with special features for use on a <a href="http://www.pcduino.com/">pcDuino</a>
    
 ###How the OS works
 
