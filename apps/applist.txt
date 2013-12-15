@@ -1,0 +1,4 @@
+segment{
+-test
+-icons/test.png
+-test/test.html

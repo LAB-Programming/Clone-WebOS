@@ -1,0 +1,95 @@
+#appCon {
+	float: left;
+	width: 100%;
+	/*width: 69%;
+	border-right-width: 1%;
+	border-right-style: solid;
+	border-right-color: gray;
+	height: 100%;*/
+}
+.appIcon{
+
+	border-radius: 15px;
+	height: 100px;
+	width: 100px;
+	background-color: #C4C4C4;
+	margin: 15px;
+	float: left;
+}
+.appIcon:hover{
+	/*background-image: linear-gradient(to bottom right, lightgray 0%, #AAAAAA 100%);*/
+	background-color: #AAAAAA;
+}
+.appIcon p{
+	font-family: helvetica;
+	font-size: 15px;
+	color: #555555;
+	text-align: center;
+	float: bottom;
+}
+.appIcon img{
+
+	width: 90%;
+	height: 90%;
+	margin-top: 5%;
+}
+
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+   	filter:alpha(opacity=40);
+    -moz-opacity:0.4;
+    -khtml-opacity: 0.4;
+    opacity: 0.4;
+    z-index: 10000;
+}
+#overlay h1{
+	background-color: #000;
+    color: #DDDDDD;
+}
+#overlay hr{
+	background-color: #000;
+    width:90%;
+    margin-right: 5%;
+    margin-left: 5%;
+}
+#exit{
+	position:fixed;
+	top:30px;
+	right: 5%;
+	width: 40px;
+	background-color: #000;
+	border: 1px solid;
+}
+.appIcon2{
+
+	border-radius: 15px;
+	border: 2px solid;
+	border-color: #C4C4C4;
+	height: 100px;
+	width: 100px;
+	margin: 15px;
+	float: left;
+}
+.appIcon2:hover{
+	/*background-image: linear-gradient(to bottom right, lightgray 0%, #AAAAAA 100%);*/
+	background-color: #AAAAAA;
+}
+.appIcon2 p{
+	font-family: helvetica;
+	font-size: 15px;
+	color: #555555;
+	text-align: center;
+	float: bottom;
+}
+.appIcon2 img{
+
+	width: 90%;
+	height: 90%;
+	margin-top: 5%;
+}

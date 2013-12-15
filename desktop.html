@@ -1,34 +1,26 @@
-
-	<script>
-	//alert("i work");
-	$(document).ready(function() {
-		$(".appIcon").hover( function() {
-			//$(this).css( "background-color", "#AAAAAA" );
-			$(this).css( "background-image", "linear-gradient(to bottom right, lightgray 0%, #AAAAAA 100%)");
-		}, 
-		function() {
-			$(this).css( "background", "lightgray" );
-			//$(this).css( "border-color", "gray" );
-		});
-	<scriptGoseHere>
-	});
-	</script>
+<html>
+<head>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+	<script type="text/javascript" src="themes/desktop.js"></script>
+	<link rel="stylesheet" type="text/css" href="themes/theme.css">
+	<link rel="stylesheet" type="text/css" href="themes/desktop.css">
+	<title>Desktop</title>
 </head>
 <body>
-<div data-role="page" data-theme="a" id="mainPage">
-	<div data-role="header" data-theme="a"><h1>desktop</h1></div>
-	<!--<div data-role="content">-->
+	<div id="mainDesktop">
+	<h1>Desktop</h1>
+	<div id="appCon">
+		<div class="appIcon" id="SS"><center><img src="images/clone_icon.png"></center><p>setings</p></div>	
+		<div class="appIcon"><center><img src="images/clone_icon.png"></center><p>test</p></div>	
+	</div>
+	</div>
 
-		
+	<div id="overlay"><h1>System Settings</h1> <button id="exit">X</button> <hr>
 		<div id="appCon">
-			<!--<div class="appIcon"><center><img src="todo.png"></center><p>todo</p></div>-->
-			<iconsGoHere>
-		</div>
+		<div class="appIcon2"><center><img src="images/clone_icon.png"></center><p>setings</p></div>	
+		<div class="appIcon2"><center><img src="images/clone_icon.png"></center><p>test</p></div>	
+	</div>
+	</div>
 
-		<div id="notifcationCon">
-			<div class="largeWidget"><h2>Welcome to Clone WebOS</h2><p>You can access this from any computer that has a web browser</p></div>
-			<div class="smallWidget"><h2>Clone WebOS</h2><p>Alpha 0.1</p></div>
-		</div>
-
-	<!--</div>-->
-</div>
+</body>
+</html>

@@ -1,0 +1,89 @@
+body {
+	background-color: lightgray;
+}
+h1 {
+	font-family: helvetica;
+	color: gray;
+	padding-right: 30%;
+	padding-left: 30%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	
+	background-color: #C4C4C4;
+	text-align: center;
+	border-radius: 5px;
+}
+
+button{
+	
+	background-color: #C1C1C1;
+	border: 0px;
+	border-radius: 5px;
+	width: 200px;
+	height: 40px;
+	
+	font-size: 18px;
+	font-family: helvetica;
+	color: gray;
+}
+button.sharp{
+	border-radius: 0px;
+	margin: 0px;
+}
+button.small{
+	width: 70px;
+}
+button:active {
+	border-left-color: #888888;	
+	border-top-color: #888888;
+
+	border-left-style: solid;
+	border-top-style: solid;
+
+	border-top-width: 2px;
+	border-left-width: 2px;
+    background-color: #AAAAAA;
+    color: lightgray;
+}
+
+textarea {
+    resize: none;
+    
+    background-color: #C1C1C1;
+    color: white;
+    font-size: 14px;
+    font-family: helvetica;
+    border-radius: 5px;
+    border-color: #AAAAAA;
+}
+
+table.List{
+	background-color: #AAAAAA;
+	border-radius: 3px;
+	font-family: helvetica;
+	font-size: 20px;
+	color: gray;
+	border-collapse: collapse;
+}
+table.List td{
+	background-color: #CCCCCC;
+	padding: 5px;
+}
+table.List th{
+	font-weight: bold;
+	padding: 5px;
+}
+
+table.List div:hover{
+	background-color: #AAAAAA;
+}
+input.text{
+	background-color: #C1C1C1;
+    color: white;
+    font-size: 20px;
+    font-family: helvetica;
+    border-radius: 5px;
+    border-color: #AAAAAA;
+    padding: 5px;
+    margin: 5px;
+}
