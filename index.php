@@ -19,7 +19,7 @@ class systemLoader{
 		$login = new LoginManger();
 		if($login->islogedin($this->userList)){
 			//echo "<html><body>hello world</body></html>";
-			echo file_get_contents("desktop.html");
+			$this->renderDesktop();
 		}else if(isset($_POST['UserName'])){
 			$login->loginNewUser($this->userList);
 		}else{
@@ -47,7 +47,12 @@ class systemLoader{
 		$appHandler->Close();
 	}
 	function renderDesktop(){
+		$appString = '';
+		foreach($this->appList as $instance){
+			$appString = $appString.$instance->renderAppString();
+		}
 		$desktopString = file_get_contents('desktop.html');
+		echo str_replace("[%Apps%]", $appString, $desktopString);
 	}
 }
 $start = new systemLoader();

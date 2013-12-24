@@ -59,6 +59,10 @@ class application{
 			return $iconLocation;
 		}
 	}
+	function renderAppString(){
+		return '<a href="apps/'.$this->appLocation.'"><div class="appIcon"><center><img src="
+		'.$this->iconLocation.'"></center><p>'.$this->appName.'</p></div></a>';
+	}
 	function getAppName(){
 		return $this->appName;
 	}

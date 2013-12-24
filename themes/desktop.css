@@ -7,6 +7,18 @@
 	border-right-color: gray;
 	height: 100%;*/
 }
+#appCon2 {
+	float: left;
+	width: 92%;
+	padding-left: 4%;
+	padding-right: 4%;
+
+	/*width: 69%;
+	border-right-width: 1%;
+	border-right-style: solid;
+	border-right-color: gray;
+	height: 100%;*/
+}
 .appIcon{
 
 	border-radius: 15px;
@@ -65,6 +77,9 @@
 	width: 40px;
 	background-color: #000;
 	border: 1px solid;
+}
+#exit:hover{
+	background-color: #AAAAAA;
 }
 .appIcon2{
 

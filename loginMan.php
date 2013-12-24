@@ -22,4 +22,17 @@ class LoginManger{
 		}
 	}
 }
+/*class dataBaseMan{
+
+	private $DataBaseName;
+	private $DBcurser;
+
+	function __construct($dataBaseName){
+		$this->DataBaseName = $dataBaseName;
+		$this->DBcurser = mysql_connect("root",)
+	}
+	function isDbExist(){
+		
+	}
+}*/
 ?>
