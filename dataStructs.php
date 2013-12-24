@@ -17,7 +17,6 @@ class User{
 		$_SESSION['Promitions'] = $this->Promitions;
 		$_SESSION['Home'] = $this->homeFolder;
 		$_SESSION['pass'] = $this->PasswordHash;
-		error_log("you are loging in!!!!".$_SESSION['UserName']);
 	}
 	function setGroup($newPromitions){
 		$this->Promitions = $newPromitions;
@@ -40,14 +39,19 @@ class User{
 		return $this->Promitions;
 	}
 }
+/*
+* this is class used to stor all of the exautables on the OS includeing apps, and settings
+*/
 class application{
 
 	private $appName;
 	private $appLocation;
 	private $iconLocation;
+	private $type; //this is "app" or "set"
 
 
-	function __construct($name, $location, $icon="NULL"){
+	function __construct($type, $name, $location, $icon="NULL"){
+		$this->type = $type;
 		$this->appName = $name;
 		$this->appLocation = $location;
 		$this->iconLocation = $this->findicon($icon);
@@ -60,8 +64,13 @@ class application{
 		}
 	}
 	function renderAppString(){
-		return '<a href="apps/'.$this->appLocation.'"><div class="appIcon"><center><img src="
-		'.$this->iconLocation.'"></center><p>'.$this->appName.'</p></div></a>';
+		if ($this->type == "app"){
+			return '<a href="apps/'.$this->appLocation.'"><div class="appIcon"><center><img src="
+			'.$this->iconLocation.'"></center><p>'.$this->appName.'</p></div></a>';
+		}else if($this->type == "set"){
+			return '<a href="apps/'.$this->appLocation.'"><div class="appIcon2"><center><img src="
+			'.$this->iconLocation.'"></center><p>'.$this->appName.'</p></div></a>';
+		}
 	}
 	function getAppName(){
 		return $this->appName;
