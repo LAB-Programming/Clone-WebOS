@@ -3,6 +3,7 @@
 include 'loginMan.php';
 include 'dataStructs.php';
 include 'cloneMarkUp.php';
+include 'mainUser.php';
 session_start();
 
 class systemLoader{
@@ -11,19 +12,22 @@ class systemLoader{
 	private $appList = array();
 	private $settingsList = array();
 
-
 	function __construct(){
-		$this->userList = $this->loadUsers();
+		$userInfo = new UsersInfo("users.txt");
+
+		$this->userList = $userInfo->getAllUsers();
 		$this->loadApps();
 		$this->loadSettings();
 
 		$login = new LoginManger();
-		if($login->islogedin($this->userList)){
+		if($login->islogedin($this->userList) && $userInfo->isUsers()){
 			$this->renderDesktop();
-		}else if(isset($_POST['UserName'])){
+		}else if(isset($_POST['UserName']) && $userInfo->isUsers()){
 			$login->loginNewUser($this->userList);
-		}else{
+		}else if($userInfo->isUsers()){
 			$login->openLogin();
+		}else{
+			echo '<html><body><script>window.location.href = "apps/users/users.php";</script></body></html>';
 		}
 	}
 	/**

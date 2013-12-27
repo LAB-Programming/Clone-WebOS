@@ -1,4 +1,0 @@
-segment{
--Gio
--pies
--admin
