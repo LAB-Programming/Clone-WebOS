@@ -1,4 +1,8 @@
 segment{
 -users
 -images/contacts.png
--users/users.php
+-apps/users/users.php
+segment{
+-Logout
+-images/clone_icon.png
+-index.php?Logout=Y

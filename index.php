@@ -20,7 +20,10 @@ class systemLoader{
 		$this->loadSettings();
 
 		$login = new LoginManger();
-		if($login->islogedin($this->userList) && $userInfo->isUsers()){
+		if(isset($_GET['Logout'])){
+			session_destroy();
+			$login->openLogin();
+		}else if($login->islogedin($this->userList) && $userInfo->isUsers()){
 			$this->renderDesktop();
 		}else if(isset($_POST['UserName']) && $userInfo->isUsers()){
 			$login->loginNewUser($this->userList);
@@ -30,13 +33,6 @@ class systemLoader{
 			echo '<html><body><script>window.location.href = "apps/users/users.php";</script></body></html>';
 		}
 	}
-	/**
-	* this function loads all of the users form a mysql data bace it dose not do this yet; 
-	* this is very much under constrution
-	 */
-	function loadUsers(){
-		return array(new User("Gio", hash('ripemd160', "pies"), "admin"), new User("bob", hash('ripemd160', "12345"), "user"));
-	}	
 	/**
 	* this function opens the apps text file than turns it into a list of objcets so that the
 	* we can see all of the apps and then do suff with them
@@ -75,6 +71,14 @@ class systemLoader{
 		}
 		$desktopString = file_get_contents('desktop.html');
 		$desktopString = str_replace("[%Apps%]", $appString, $desktopString);
+		$desktopString = str_replace("[%Set%]", $settingString, $desktopString);
+		echo $desktopString;
+	}
+}
+$start = new systemLoader();
+
+
+?>desktopString = str_replace("[%Apps%]", $appString, $desktopString);
 		$desktopString = str_replace("[%Set%]", $settingString, $desktopString);
 		echo $desktopString;
 	}

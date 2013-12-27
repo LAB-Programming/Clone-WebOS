@@ -68,7 +68,7 @@ class application{
 			return '<a href="apps/'.$this->appLocation.'"><div class="appIcon"><center><img src="
 			'.$this->iconLocation.'"></center><p>'.$this->appName.'</p></div></a>';
 		}else if($this->type == "set"){
-			return '<a href="apps/'.$this->appLocation.'"><div class="appIcon2"><center><img src="
+			return '<a href="'.$this->appLocation.'"><div class="appIcon2"><center><img src="
 			'.$this->iconLocation.'"></center><p>'.$this->appName.'</p></div></a>';
 		}
 	}
@@ -81,5 +81,7 @@ class application{
 	function getIconLocal(){
 		return $this->iconLocation;
 	}
+}
+?>
 }
 ?>
