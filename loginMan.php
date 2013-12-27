@@ -4,7 +4,9 @@ class LoginManger{
 	function islogedin($arrayUsers){
 	
 		foreach($arrayUsers as $maybeUser){
-			return ($_SESSION['UserName'] == $maybeUser->getUserName());	
+			if (isset($_SESSION['UserName']) && $_SESSION['UserName'] == $maybeUser->getUserName()){
+				return true;
+			}	
 		}
 		return true;
 		
@@ -17,6 +19,7 @@ class LoginManger{
 			error_log($UserInstnce->getUserName()." && ".$_POST['UserName']);
 			if ($_POST['UserName'] == $UserInstnce->getUserName() && hash('ripemd160', $_POST['password']) == $UserInstnce->getPassHash()){
 				$UserInstnce->createPublicSession();
+				error_log("loged in as: ".$_SESSION['UserName']);
 				echo "<html><body><script>location.reload();</script></body></html>";
 			}
 		}
