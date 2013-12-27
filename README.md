@@ -43,16 +43,14 @@ Clone-WebOS
    
 ###How to add an app to the system
    
-   An app, in Clone WebOS, is a web page.  To add an app to the system, you put the icon in home/bin/icons, and put
+   An app, in Clone WebOS, is a web page.  To add an app to the system, you put the icon in images/, and put
    the rest of the files in the app's folder in the bin folder. Then, you have to add the app to the apps array in 
-   the apps.xml file. The entry for an app should look somewhat like this:
+   the appslist.txt file. The entry for an app should look somewhat like this:
       
-      <app>
-         <displayName>My Fancy New App!</displayName>
-         <name>my-fancy-app</name>
-         <url>appfolder/app.filetype</url>
-         <icon>icons/app_icon.png</icon>
-      </app>
+      segment{
+      -app name
+      -apps/folder/index.html
+      -images/your_icon.png
    
 
 
