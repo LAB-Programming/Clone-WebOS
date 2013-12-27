@@ -78,12 +78,4 @@ class systemLoader{
 $start = new systemLoader();
 
 
-?>desktopString = str_replace("[%Apps%]", $appString, $desktopString);
-		$desktopString = str_replace("[%Set%]", $settingString, $desktopString);
-		echo $desktopString;
-	}
-}
-$start = new systemLoader();
-
-
 ?>

@@ -8,7 +8,7 @@ class LoginManger{
 				return true;
 			}	
 		}
-		return true;
+		return false;
 		
 	}
 	function openLogin(){

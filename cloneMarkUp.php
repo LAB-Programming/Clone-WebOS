@@ -42,14 +42,16 @@
 		*/
 		function Write($OverWrite=false, $DataToWrite){
 			$fileString = '';
+			$oldFile = '';
 			if(!$OverWrite){
-				$fileString = fread($this->fileHandle, filesize($this->fileLoction));
+				$oldFile = fread($this->fileHandle, filesize($this->fileLoction));
+				error_log("reading file predata: ".$oldFile);
 			}
 			foreach($DataToWrite as $Singalseg){
 				$fileString = $fileString.$this->renderStr($Singalseg);
 			}
+			error_log("final String: ".$fileString);
 			fwrite($this->fileHandle, $fileString);
-			clearstatcache();
 
 		}
 		/* FOR INTREAL USE ONLY!!!!!!!ONLY!!!!!!ONLY!!!!!! 
