@@ -1,0 +1,4 @@
+segment{
+-../../apps/files/files.php
+-NONE
+-../../images/folder.png

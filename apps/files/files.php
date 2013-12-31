@@ -1,0 +1,70 @@
+<?
+/*
+Clone Files: Giovanni Rescigno 2013
+V: 0.2
+
+DISCRIPTION:
+Clone files is the file browser for clone web os (much like finder on a mac) but is actrly a web site
+you can veiw files in your user folder or files that have been shared with you form other users on your 
+system
+*/
+
+include 'file.php';
+include '../../cloneMarkUp.php';
+
+session_start();
+$relitaveURL = '';
+$currentURL = '';
+$types = array();
+$files = array();
+
+/*
+this function takes in one vaurable which holds an array of all of the files in a given 
+directory than turns each of them in to a icon of html and then renders the file GUI
+for the frontend and then echos it
+*/
+function renderGUI($filesArray){
+	$file_GUI = file_get_contents('files.html');
+
+	$file_icons = '';
+	foreach($filesArray as $fileInstance){
+		$file_icons = $file_icons.'<a href='.$fileInstance->getType()->getReply($fileInstance->getURL()).'
+		><div class="appIcon" ><center><img src="'.$fileInstance->getType()->getImage().'">
+		</center><p>'.$fileInstance->getname().'</p></div></a>';
+	}
+
+	$file_GUI = str_replace('[%allfiles%]', $file_icons, $file_GUI);
+	echo $file_GUI;
+}
+
+
+
+if(isset($_GET['Dir']) && isset($_GET['Alldir'])){
+	$currentURL = '../../'.$_GET['Dir'];
+	$relitaveURL = $currentURL;
+
+}else if(isset($_GET['Dir'])){//checks if there is get 
+	$currentURL = '../../'.$_SESSION['Home'].'/'.$_GET['Dir'];
+	$relitaveURL = $_GET['Dir'].'/';
+}else{
+	$currentURL = '../../'.$_SESSION['Home'];
+	$relitaveURL = '';
+}
+$types_file_handle = new MarkUpFile('types.txt');
+$types_file_arrayList = $types_file_handle->Read();
+$types_file_handle->Close();
+exec('ls '.$currentURL, $raw_dir_data);
+
+foreach($types_file_arrayList as $single_type){
+	$types = array_merge($types, array(new fileType($single_type[2], $single_type[1], $single_type[3])));
+}
+foreach($raw_dir_data as $singleEnt){
+	$files = array_merge($files, array(new file($relitaveURL, $singleEnt, $types)));
+}
+
+
+renderGUI($files);
+
+
+
+?>
