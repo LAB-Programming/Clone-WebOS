@@ -7,11 +7,19 @@
 </head>
 <body>
 	<h1>files</h1>
-	<div id="toolBar"></div>
-	<div id="appCon">
+	<table>
+		<tr>
+		<td id="tools"><div id="toolBar"> 
+			<form type="hidden" action="files.php" method="get">
+				<input type="hidden" name = "Dir" value = "{/dir/}">
+				<input class="text" type="text" placeholder="new folder" name="mkdir">
+				<button>+</button>
+			</from>
+		</div></form>
+		<td id="fileCons"><div id="appCon">
 		<!--<div class="appIcon" ><center><img src="../../images/folder.png"></center><p>test</p></div>-->
-		[%allfiles%]
-	</div>
-
+			[%allfiles%]
+		</div></td>
+	</table>
 </body>
 </html>

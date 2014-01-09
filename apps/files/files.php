@@ -23,7 +23,7 @@ this function takes in one vaurable which holds an array of all of the files in 
 directory than turns each of them in to a icon of html and then renders the file GUI
 for the frontend and then echos it
 */
-function renderGUI($filesArray){
+function renderGUI($filesArray, $relitaveURL){
 	$file_GUI = file_get_contents('files.html');
 
 	$file_icons = '';
@@ -34,6 +34,7 @@ function renderGUI($filesArray){
 	}
 
 	$file_GUI = str_replace('[%allfiles%]', $file_icons, $file_GUI);
+	$file_GUI = str_replace('{/dir/}', $relitaveURL, $file_GUI);
 	echo $file_GUI;
 }
 
@@ -50,21 +51,22 @@ if(isset($_GET['Dir']) && isset($_GET['Alldir'])){
 	$currentURL = '../../'.$_SESSION['Home'];
 	$relitaveURL = '';
 }
+
+if(isset($_GET['mkdir'])){
+	filesSystem::makeDirectory($currentURL ,$_GET['mkdir']);
+	echo '<html><body><script>window.location.href = "files.php?Dir='.$relitaveURL.'";</script></body></html>';
+}
 $types_file_handle = new MarkUpFile('types.txt');
 $types_file_arrayList = $types_file_handle->Read();
 $types_file_handle->Close();
-exec('ls '.$currentURL, $raw_dir_data);
-
-foreach($types_file_arrayList as $single_type){
-	$types = array_merge($types, array(new fileType($single_type[2], $single_type[1], $single_type[3])));
-}
-foreach($raw_dir_data as $singleEnt){
+//exec('ls '.$currentURL, $raw_dir_data);
+$types = filesSystem::getTypes();
+$files = filesSystem::getFiles($currentURL, $types, $relitaveURL);
+/*foreach($raw_dir_data as $singleEnt){
 	$files = array_merge($files, array(new file($relitaveURL, $singleEnt, $types)));
-}
+}*/
 
-
-renderGUI($files);
-
+renderGUI($files, $relitaveURL);
 
 
 ?>

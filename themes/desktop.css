@@ -1,6 +1,7 @@
 #appCon {
 	float: left;
 	width: 100%;
+	padding-bottom: 300px;
 	/*width: 69%;
 	border-right-width: 1%;
 	border-right-style: solid;
@@ -8,7 +9,7 @@
 	height: 100%;*/
 }
 #appCon2 {
-	float: left;
+	/*float: left;*/
 	width: 92%;
 	padding-left: 4%;
 	padding-right: 4%;

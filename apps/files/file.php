@@ -91,4 +91,50 @@ class file{
 		return $this->type;
 	}
 }
+class filesSystem{
+	/*
+	* this function rerutrns an array of type objects
+	* an example of a type is a text file or a folder.
+	* this fuction gives you all the types that the system knows of 
+	*/
+	function getTypes(){
+		//opens up the types file
+		$types_file_handle = new MarkUpFile('types.txt'); 
+		$types_file_arrayList = $types_file_handle->Read();
+		$types_file_handle->Close();
+		//types is the array that holds all of the types
+		$types = array();
+		//loads all the types in to types
+		foreach($types_file_arrayList as $single_type){
+			$types = array_merge($types, array(new fileType($single_type[2], $single_type[1], $single_type[3])));
+		}
+		return $types;
+	}
+	/*
+	takes in two arugments which is the url you want to get the files from and all of the system types
+	and returns an array of file objects (with types)
+	*/
+	function getFiles($currentURL, $types, $relitaveURL){
+		//runs the ls command to get all of the files in the directory
+		exec('ls '.$currentURL, $raw_dir_data);
+
+		$files = array();
+		foreach($raw_dir_data as $singleEnt){
+			$files = array_merge($files, array(new file($relitaveURL, $singleEnt, $types)));
+		}
+		return $files;
+	}
+	/*
+	* this function makes a directory 
+	* it takes in two arugments the url and the name
+	*/
+	function makeDirectory($URL, $name){
+		//exec('mkdir '.$URL.'/'.$name.'/', $didFail);
+		exec('ls '.$URL, $raw_dir_data);
+		foreach($raw_dir_data as $dircheck){
+			if($dircheck == $name){return 0;}
+		}
+		mkdir($URL.'/'.$name.'/', 0777);
+	}
+}
 ?>
