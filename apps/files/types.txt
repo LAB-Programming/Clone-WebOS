@@ -2,3 +2,7 @@ segment{
 -../../apps/files/files.php
 -NONE
 -../../images/folder.png
+segment{
+-../../apps/text/text.php
+-txt
+-../../images/Documents.png

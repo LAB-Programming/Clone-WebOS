@@ -9,6 +9,8 @@
 }
 #tools{
 	width: 20%;
+	border-right: solid 1px;
+	border-color: #C3C4C3
 }
 #fileCons{
 	width: 80%;
@@ -18,4 +20,7 @@ table{
 }
 .text{
 	width: 98%;
+}
+#small{
+	width: 40px;
 }

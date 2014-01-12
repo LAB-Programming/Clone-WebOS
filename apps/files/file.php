@@ -136,5 +136,18 @@ class filesSystem{
 		}
 		mkdir($URL.'/'.$name.'/', 0777);
 	}
+	/*
+	*this function takes two poramitors a url and a directo
+	*name. this function deleats a drectory
+	*/ 
+	function delDirectory($URL, $name){
+		if(is_dir($URL.'/'.$name.'/')){
+			system('rm -rf '.$URL.'/'.$name.'/');
+		}else{
+			var_dump($URL.$name);
+			system('rm '.$URL.$name, $runval);
+			var_dump($runval);
+		}
+	}
 }
 ?>

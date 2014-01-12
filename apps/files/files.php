@@ -39,7 +39,9 @@ function renderGUI($filesArray, $relitaveURL){
 }
 
 
-
+/*
+* reads all of the navagation stuffs
+*/
 if(isset($_GET['Dir']) && isset($_GET['Alldir'])){
 	$currentURL = '../../'.$_GET['Dir'];
 	$relitaveURL = $currentURL;
@@ -51,11 +53,18 @@ if(isset($_GET['Dir']) && isset($_GET['Alldir'])){
 	$currentURL = '../../'.$_SESSION['Home'];
 	$relitaveURL = '';
 }
-
+/*
+*sees if any commands have been invoced and
+*than runs them though the fileSystem class
+*/
 if(isset($_GET['mkdir'])){
 	filesSystem::makeDirectory($currentURL ,$_GET['mkdir']);
 	echo '<html><body><script>window.location.href = "files.php?Dir='.$relitaveURL.'";</script></body></html>';
+}else if(isset($_GET['rmdir'])){
+	filesSystem::delDirectory($currentURL ,$_GET['rmdir']);
+	//echo '<html><body><script>window.location.href = "files.php?Dir='.$relitaveURL.'";</script></body></html>';
 }
+
 $types_file_handle = new MarkUpFile('types.txt');
 $types_file_arrayList = $types_file_handle->Read();
 $types_file_handle->Close();
