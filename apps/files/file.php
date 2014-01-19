@@ -144,9 +144,7 @@ class filesSystem{
 		if(is_dir($URL.'/'.$name.'/')){
 			system('rm -rf '.$URL.'/'.$name.'/');
 		}else{
-			var_dump($URL.$name);
 			system('rm '.$URL.$name, $runval);
-			var_dump($runval);
 		}
 	}
 }

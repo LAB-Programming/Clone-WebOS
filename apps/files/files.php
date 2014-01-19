@@ -28,9 +28,12 @@ function renderGUI($filesArray, $relitaveURL){
 
 	$file_icons = '';
 	foreach($filesArray as $fileInstance){
-		$file_icons = $file_icons.'<a href='.$fileInstance->getType()->getReply($fileInstance->getURL()).'
+        $file_icons = $file_icons.'<div class="iconHolder">
+        <table><tr><td id="top"><a href="files.php?rmdir='.$fileInstance->getURL().'">
+            <center><button class="del">Delete</button><center>
+        </a></td></tr><tr><td><a href='.$fileInstance->getType()->getReply($fileInstance->getURL()).'
 		><div class="appIcon" ><center><img src="'.$fileInstance->getType()->getImage().'">
-		</center><p>'.$fileInstance->getname().'</p></div></a>';
+		</center><p>'.$fileInstance->getname().'</p></div></a></tr></td></table></div>';
 	}
 
 	$file_GUI = str_replace('[%allfiles%]', $file_icons, $file_GUI);
@@ -62,7 +65,7 @@ if(isset($_GET['mkdir'])){
 	echo '<html><body><script>window.location.href = "files.php?Dir='.$relitaveURL.'";</script></body></html>';
 }else if(isset($_GET['rmdir'])){
 	filesSystem::delDirectory($currentURL ,$_GET['rmdir']);
-	//echo '<html><body><script>window.location.href = "files.php?Dir='.$relitaveURL.'";</script></body></html>';
+	echo '<html><body><script>window.location.href = "files.php?Dir='.$relitaveURL.'";</script></body></html>';
 }
 
 $types_file_handle = new MarkUpFile('types.txt');
