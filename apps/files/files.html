@@ -2,16 +2,19 @@
 <head>
 	<title>files</title>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <script type="text/javascript" src="files.js"></script>
 	<link rel="stylesheet" type="text/css" href="../../themes/theme.css">
 	<link rel="stylesheet" type="text/css" href="../../themes/desktop.css">
 	<link rel="stylesheet" type="text/css" href="files.css">
 </head>
 <body>
+    <div id="UpDir"><center><img width="50" height="50" src="../../images/upArror.png"/></center></div>
 	<h1>files</h1>
 	<table>
 		<tr>
-		<td id="tools"><div id="toolBar"> 
+		<td id="tools"><div id="toolBar">
+            <center><a href="../../index.php"><button>Home</button></a></center>
 			<form type="hidden" action="files.php" method="get">
 				<input type="hidden" name = "Dir" value = "{/dir/}">
 				<center><table><tr><td><input class="text" type="text" placeholder="new folder" name="mkdir">
