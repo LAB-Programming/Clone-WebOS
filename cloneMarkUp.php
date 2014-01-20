@@ -23,20 +23,20 @@
 		function Read(){
 			clearstatcache();
 			$this->arrayTree = array();
-			$fileString = fread($this->fileHandle, filesize($this->fileLoction));//opens the file and turns it into a str
-			if ($fileString == ''){return false;}
+			$fileString = fread($this->fileHandle, max(filesize($this->fileLoction), 1));//opens the file and turns it into a str
+			if (trim($fileString) == ''){return false;}
 			$segmentArray = explode("segment{", $fileString);//gets ecah segemnt
 			unset($segmentArray[0]);//i do this because the frist thing is a ''
 
 			foreach($segmentArray as $singalSeg){
-				$singalSegarray = explode("-", $singalSeg);
+				$singalSegarray = $this->cml_decode(explode("-", $singalSeg)); // decode the data after it has been exploded
 				unset($singalSegarray[0]);
 				$this->arrayTree = array_merge($this->arrayTree, array($singalSegarray[1] => $singalSegarray));
 			}
 			return $this->arrayTree;
 		}
 		/*
-		* Write take two pramitors an OverWrite && DataToWrite (in an array same format as Read)
+		* Write take two pramitors an OverWrite && DataToWrite (in a string array array same format as Read)
 		* if the OverWrite = false; than it will concatiante the new data on the old other wise it 
 		* just wipes the whole text file and adds the new data.
 		*/
@@ -48,7 +48,7 @@
 				error_log("reading file predata: ".$oldFile);
 			}
 			foreach($DataToWrite as $Singalseg){
-				$fileString = $fileString.$this->renderStr($Singalseg);
+				$fileString .= $this->renderStr($Singalseg);
 			}
 			error_log("final String: ".$fileString);
 			fwrite($this->fileHandle, $fileString);
@@ -57,16 +57,32 @@
 		/* FOR INTREAL USE ONLY!!!!!!!ONLY!!!!!!ONLY!!!!!! 
 		-said the dalek*/
 		private function renderStr($segmentData){
-			$Header = "segment{\r";
-
+			$str = "segment{\r";
+			$segmentData = $this->cml_sanitize($segmentData); // sanitize all the data so people can't do code injection
 			foreach($segmentData as $element){
-				$Header = $Header.'-'.$element."\r";
+				$str .= '-'.$element."\r"; // Append each element preceded by as dash (-)
 			}
-			return $Header;
+			return $str;
 		}
 		function Close(){
 			fclose($this->fileHandle);
 			clearstatcache();
+		}
+		
+		/* Replace all ampersands (&), open curly braces ({), and dashes (-)
+		 * With the appropriate code (&a, &b, &d, respectively)
+		 * Works on both individual string and string arrays
+		 */
+		function cml_sanitize($str) {
+			return str_replace(array("&", "{", "-"), array("&a", "&b", "&d"), $str);
+		}
+		
+		/* Inverse of cml_sanitize($str)
+		 * This should be run when CML is read directly from a file
+		 * Works on both individual string and string arrays
+		 */
+		function cml_decode($str) {
+			return str_replace(array("&d", "&b", "&a"), array("-", "{", "&"), $str);
 		}
 	}
 	/*
