@@ -41,3 +41,41 @@ table{
     margin: 15px;
     float: left;
 }
+#upDir{
+    position:fixed;
+    top: 0px;
+    width: 100%;
+
+    background: -moz-linear-gradient(
+        top, rgba(0,0,0,0.65) 0%,
+        rgba(0,0,0,0.39) 40%,
+        rgba(0,0,0,0) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom,
+        color-stop(0%,rgba(0,0,0,0.65)),
+        color-stop(40%,rgba(0,0,0,0.39)),
+        color-stop(100%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,
+        rgba(0,0,0,0.65) 0%,
+        rgba(0,0,0,0.39) 40%,
+        rgba(0,0,0,0) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,
+        rgba(0,0,0,0.65) 0%,
+        rgba(0,0,0,0.39) 40%,
+        rgba(0,0,0,0) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,
+        rgba(0,0,0,0.65) 0%,
+        rgba(0,0,0,0.39) 40%,
+        rgba(0,0,0,0) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,
+        rgba(0,0,0,0.65) 0%,
+        rgba(0,0,0,0.39) 40%,
+        rgba(0,0,0,0) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(
+           startColorstr='#a6000000',
+           endColorstr='#00000000',
+           GradientType=0 ); /* IE6-9 */
+}
+#upDir img{
+    margin-left: auto;
+    margin-right: auto;
+}
