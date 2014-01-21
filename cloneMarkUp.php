@@ -1,4 +1,4 @@
-<? 
+<?php 
 	class MarkUpFile{
 
 		private $fileLoction;//holds the file location of the the file opend

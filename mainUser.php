@@ -1,4 +1,4 @@
-<?
+<?php
 	/*
 	[Giovanni Rescigno - Clone Computers 2013 V1.0b GPL 2.0]
 	this class holds info about the over state of all of the users in the system

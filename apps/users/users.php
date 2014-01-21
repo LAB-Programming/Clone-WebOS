@@ -1,4 +1,4 @@
-<?
+<?php
 include '../../dataStructs.php';
 include '../../cloneMarkUp.php';
 include '../../mainUser.php';

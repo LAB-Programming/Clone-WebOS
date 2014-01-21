@@ -1,4 +1,4 @@
-<?
+<?php
 class fileType{
 
 	private $extention;//holds the extention of the type (like .txt)

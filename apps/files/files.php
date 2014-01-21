@@ -1,4 +1,4 @@
-<?
+<?php
 /*
 Clone Files: Giovanni Rescigno 2013
 V: 0.2
