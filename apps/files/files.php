@@ -51,7 +51,11 @@ if(isset($_GET['Dir']) && isset($_GET['Alldir'])){
 
 }else if(isset($_GET['Dir'])){//checks if there is get 
 	$currentURL = '../../'.$_SESSION['Home'].'/'.$_GET['Dir'];
-	$relitaveURL = $_GET['Dir'].'/';
+    if(!(substr($_GET['Dir'], -1) == '/')){
+         $relitaveURL = $_GET['Dir'].'/';
+    }else{
+           $relitaveURL = $_GET['Dir'];
+    }
 }else{
 	$currentURL = '../../'.$_SESSION['Home'];
 	$relitaveURL = '';
@@ -66,6 +70,9 @@ if(isset($_GET['mkdir'])){
 }else if(isset($_GET['rmdir'])){
 	filesSystem::delDirectory($currentURL ,$_GET['rmdir']);
 	echo '<html><body><script>window.location.href = "files.php?Dir='.$relitaveURL.'";</script></body></html>';
+}else if(isset($_GET['cpDir']) && isset($_GET['cpDest'])){
+    filesSystem::copyFile($_GET['cpDir'], $_GET['cpDest']);
+    echo '<html><body><script>window.location.href = "files.php?Dir='.$relitaveURL.'";</script></body></html>';
 }
 
 $types_file_handle = new MarkUpFile('types.txt');

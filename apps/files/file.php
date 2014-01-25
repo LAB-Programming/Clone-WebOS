@@ -147,5 +147,15 @@ class filesSystem{
 			system('rm '.$URL.$name, $runval);
 		}
 	}
+    /*
+     * this function takes two peramitors the file you what to
+     * copy and the file you what to copy it into. this fuction
+     * moves the dir were you want it
+     * */
+    function copyFile($source, $dest){
+        // Simple copy for a file
+        exec("cp -R ".$source." ".$dest);
+        return exec("cp -R ".$source." ".$dest);
+    }
 }
 ?>

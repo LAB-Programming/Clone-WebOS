@@ -1,10 +1,13 @@
 $(document).ready(function(){
+    var DirName = '';
+
     $(".del").hide();
     $("#UpDir").hide();
     $(".iconHolder").hover(
         function(){
             $(this).find(".del").show();
             $("#UpDir").show();
+            DirName = $(this).find("p").text();
         }, function(){
              $(this).find(".del").hide();
             $("#UpDir").hide();
@@ -23,7 +26,8 @@ $(document).ready(function(){
         });
         $("#UpDir").droppable({ accept: ".iconHolder",
             drop: function(event, ui){
-                alert("up dir");
+                var newURL = document.URL;
+
             }
         });
     });
