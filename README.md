@@ -48,7 +48,7 @@ Clone-WebOS
    the appslist.txt file. The entry for an app should look somewhat like this:
       
       segment{
-      -app name
+      -app_name
       -apps/folder/index.html
       -images/your_icon.png
    
