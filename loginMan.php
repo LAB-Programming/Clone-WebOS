@@ -17,7 +17,7 @@ class LoginManger{
 	function loginNewUser($Userlist){
 		foreach($Userlist as $UserInstnce){
 			error_log($UserInstnce->getUserName()." && ".$_POST['UserName']);
-			if ($_POST['UserName'] == $UserInstnce->getUserName() && hash('ripemd160', $_POST['password']) == $UserInstnce->getPassHash()){
+			if ($_POST['UserName'] == $UserInstnce->getUserName() && password_verify($_POST['password'], $UserInstnce->getPassHash())) {
 				$UserInstnce->createPublicSession();
 				error_log("loged in as: ".$_SESSION['UserName']);
 				echo "<html><body><script>location.reload();</script></body></html>";
