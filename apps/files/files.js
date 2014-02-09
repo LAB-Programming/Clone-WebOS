@@ -1,16 +1,15 @@
 $(document).ready(function(){
     var DirName = '';
+    var GETobject = new URL(document.URL);
 
     $(".del").hide();
     $("#UpDir").hide();
     $(".iconHolder").hover(
         function(){
             $(this).find(".del").show();
-            $("#UpDir").show();
-            DirName = $(this).find("p").text();
+            //DirName = $(this).find("p").text();
         }, function(){
-             $(this).find(".del").hide();
-            $("#UpDir").hide();
+            $(this).find(".del").hide();
         }
     );
     /*
@@ -18,16 +17,23 @@ $(document).ready(function(){
     * */
     $(function() {
         //turns all of the .iconHolder's in to a draggable
-        $(".iconHolder").draggable({ revert: true});
+        $(".iconHolder").draggable({ revert: true , stack: "div",
+            start: function( event, ui ) {
+                DirName = $(this).find("p").text();
+                $("#UpDir").show();  
+            },
+            stop: function( event, ui ) {
+                $("#UpDir").hide();
+            }
+        });
         $(".iconHolder").droppable({ accept: ".iconHolder", //only lets other iconHolder's be dropped
             drop: function(event, ui){//function is triggered when draggable of iconHolder is dragged over
-                alert("you have droped me!");
+                alert(DirName);
             }
         });
         $("#UpDir").droppable({ accept: ".iconHolder",
             drop: function(event, ui){
-                var newURL = document.URL;
-
+                alert(GETobject.getGETs());
             }
         });
     });

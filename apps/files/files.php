@@ -5,7 +5,7 @@ V: 0.2
 
 DISCRIPTION:
 Clone files is the file browser for clone web os (much like finder on a mac) but is actrly a web site
-you can veiw files in your user folder or files that have been shared with you form other users on your 
+you can veiw files in your user folder or files that have been shared with you form other users on your
 system
 */
 
@@ -19,7 +19,7 @@ $types = array();
 $files = array();
 
 /*
-this function takes in one vaurable which holds an array of all of the files in a given 
+this function takes in one vaurable which holds an array of all of the files in a given
 directory than turns each of them in to a icon of html and then renders the file GUI
 for the frontend and then echos it
 */
@@ -28,12 +28,12 @@ function renderGUI($filesArray, $relitaveURL){
 
 	$file_icons = '';
 	foreach($filesArray as $fileInstance){
-        $file_icons = $file_icons.'<div class="iconHolder">
-        <table><tr><td id="top"><a href="files.php?rmdir='.$fileInstance->getURL().'">
-            <center><button class="del">Delete</button><center>
-        </a></td></tr><tr><td><a href='.$fileInstance->getType()->getReply($fileInstance->getURL()).'
-		><div class="appIcon" ><center><img src="'.$fileInstance->getType()->getImage().'">
-		</center><p>'.$fileInstance->getname().'</p></div></a></tr></td></table></div>';
+	        $file_icons = $file_icons.'<div class="iconHolder">
+	<table><tr><td id="top"><a href="files.php?rmdir='.$fileInstance->getURL().'">
+	<center><button class="del">Delete</button><center>
+	</a></td></tr><tr><td><a href='.$fileInstance->getType()->getReply($fileInstance->getURL()).'
+	><div class="appIcon" ><center><img src="'.$fileInstance->getType()->getImage().'">
+	</center><p>'.$fileInstance->getname().'</p></div></a></tr></td></table></div>';
 	}
 
 	$file_GUI = str_replace('[%allfiles%]', $file_icons, $file_GUI);
@@ -49,8 +49,8 @@ if(isset($_GET['Dir']) && isset($_GET['Alldir'])){
 	$currentURL = '../../'.$_GET['Dir'];
 	$relitaveURL = $currentURL;
 
-}else if(isset($_GET['Dir'])){//checks if there is get 
-	$currentURL = '../../'.$_SESSION['Home'].'/'.$_GET['Dir'];
+}else if(isset($_GET['Dir'])){//checks if there is get
+$currentURL = '../../'.$_SESSION['Home'].'/'.$_GET['Dir'];
     if(!(substr($_GET['Dir'], -1) == '/')){
          $relitaveURL = $_GET['Dir'].'/';
     }else{
@@ -82,7 +82,7 @@ $types_file_handle->Close();
 $types = filesSystem::getTypes();
 $files = filesSystem::getFiles($currentURL, $types, $relitaveURL);
 /*foreach($raw_dir_data as $singleEnt){
-	$files = array_merge($files, array(new file($relitaveURL, $singleEnt, $types)));
+$files = array_merge($files, array(new file($relitaveURL, $singleEnt, $types)));
 }*/
 
 renderGUI($files, $relitaveURL);
