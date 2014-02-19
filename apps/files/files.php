@@ -50,15 +50,11 @@ if(isset($_GET['Dir']) && isset($_GET['Alldir'])){
 	$relitaveURL = $currentURL;
 
 }else if(isset($_GET['Dir'])){//checks if there is get
-$currentURL = '../../'.$_SESSION['Home'].'/'.$_GET['Dir'];
-    if(!(substr($_GET['Dir'], -1) == '/')){
-         $relitaveURL = $_GET['Dir'].'/';
-    }else{
-           $relitaveURL = $_GET['Dir'];
-    }
+	$currentURL = '../../'.$_SESSION['Home'].'/'.$_GET['Dir'];
+    $relitaveURL = $_GET['Dir'];
 }else{
 	$currentURL = '../../'.$_SESSION['Home'];
-	$relitaveURL = '';
+	$relitaveURL = '/';
 }
 /*
 *sees if any commands have been invoced and

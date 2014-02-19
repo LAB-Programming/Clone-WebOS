@@ -42,7 +42,7 @@ class file{
 	function __construct($location, $name, $allFileTypes){
 		$this->location = $location;
 		$this->name = $name;
-		$this->fullURL = $this->location.$this->name;
+		$this->fullURL = $this->location.'/'.$this->name;
 		$this->type = $this->findType($allFileTypes);
 	}
 	/*

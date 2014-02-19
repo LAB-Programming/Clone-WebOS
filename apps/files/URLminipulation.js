@@ -45,13 +45,26 @@ function URL(rawPageURL){
 	* this fuction returns a String that is the new URL (not includeing pervusGets)
 	*/
 	this.sendGET = function(newGETArray){
-		var mainURL = this.pageUR.split("?");
+		var mainURL = this.pageURL.split("?");
 		var GETrequest = "?";
 
 		for(var i = 0; i < newGETArray.length; i++){
 			GETrequest=GETrequest+newGETArray[i][0]+"="+newGETArray[i][1]+"&";
 		}
-		return GETrequest;
+		return mainURL+GETrequest;
+	}
+	/**
+	*this function take a URL string and than finds the parinet drectory
+	*URL this can be mores useful than it looks
+	*/
+	this.removeLastSegment = function(Directory){
+		var LastIndex = Directory.lastIndexOf('/');
+		
+		if(LastIndex = -1){
+			return false;
+		}else{
+			return Directory.substr(0, LastIndex);
+		}
 	}
 
 }

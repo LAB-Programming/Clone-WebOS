@@ -1,5 +1,6 @@
 $(document).ready(function(){
     var DirName = '';
+    var DropDir = '';
     var GETobject = new URL(document.URL);
 
     $(".del").hide();
@@ -28,12 +29,25 @@ $(document).ready(function(){
         });
         $(".iconHolder").droppable({ accept: ".iconHolder", //only lets other iconHolder's be dropped
             drop: function(event, ui){//function is triggered when draggable of iconHolder is dragged over
+                DropDir = $(this).find("p").text();
                 alert(DirName);
+
             }
         });
         $("#UpDir").droppable({ accept: ".iconHolder",
             drop: function(event, ui){
-                alert(GETobject.getGETs());
+                var getArray = GETobject.findGET("Dir");
+                if(getArray != false && getArray[1] != '' && getArray[1] != '/'){
+                	var CurrentURL = getArray[1]
+                	var preveiusURL = GETobject.removeLastSegment(CurrentURL);
+                	var finalURL = GETobject.sendGET([
+                			['Dir', CurrentURL], 
+                			['cpDir', CurrentURL+'/'+DirName],
+                			['cpDest', preveiusURL]
+                		]);
+                	window.location.href = finalURL;
+                }
+           		
             }
         });
     });

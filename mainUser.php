@@ -48,7 +48,7 @@
 		*/
 		function createNewUser($userName, $UnhashedPass, $type){
 			$systemUsersFileHandle = new MarkUpFile($this->usersFileLocation);
-			$systemUsersFileHandle->Write(false, array(array($userName, password_hash($UnhashedPass, PASSWORD_DEFAULT), $type)));
+			$systemUsersFileHandle->Write(false, array(array($userName, hash('ripemd160', $UnhashedPass), $type)));
 			$systemUsersFileHandle->Close();
 		}
 	}
