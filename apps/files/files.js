@@ -36,18 +36,18 @@ $(document).ready(function(){
         });
         $("#UpDir").droppable({ accept: ".iconHolder",
             drop: function(event, ui){
-                var getArray = GETobject.findGET("Dir");
-                if(getArray != false && getArray[1] != '' && getArray[1] != '/'){
-                	var CurrentURL = getArray[1]
+                var getArray = GETobject.findGET("Dir", GETobject.getGETs());
+                if(getArray != false && getArray != '' && getArray != '/'){
+                	var CurrentURL = getArray;
                 	var preveiusURL = GETobject.removeLastSegment(CurrentURL);
                 	var finalURL = GETobject.sendGET([
                 			['Dir', CurrentURL], 
                 			['cpDir', CurrentURL+'/'+DirName],
                 			['cpDest', preveiusURL]
                 		]);
+                    alert(finalURL);
                 	window.location.href = finalURL;
                 }
-           		
             }
         });
     });

@@ -27,12 +27,12 @@ function URL(rawPageURL){
 	* maching key it returns the string if it has been found it return false if it
 	* has not been found. 
 	*/
-	this.findGET = function(GETkey){
+	this.findGET = function(GETkey, GETArray){
 
 		var key = GETkey;
-		for(var i = 0; i < this.getArray.length; i++){
-			if(this.getArray[i][0] === key){
-				return this.getArray[i][1];
+		for(var i = 0; i < GETArray.length; i++){
+			if(GETArray[i][0] === key){
+				return GETArray[i][1];
 			}
 		}
 		return false;//returns false if the "key" is not found
@@ -45,7 +45,7 @@ function URL(rawPageURL){
 	* this fuction returns a String that is the new URL (not includeing pervusGets)
 	*/
 	this.sendGET = function(newGETArray){
-		var mainURL = this.pageURL.split("?");
+		var mainURL = this.pageURL.split("?")[0];
 		var GETrequest = "?";
 
 		for(var i = 0; i < newGETArray.length; i++){
@@ -59,8 +59,9 @@ function URL(rawPageURL){
 	*/
 	this.removeLastSegment = function(Directory){
 		var LastIndex = Directory.lastIndexOf('/');
-		
-		if(LastIndex = -1){
+		alert(LastIndex);
+
+		if(LastIndex === -1){
 			return false;
 		}else{
 			return Directory.substr(0, LastIndex);

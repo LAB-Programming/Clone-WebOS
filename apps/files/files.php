@@ -54,7 +54,7 @@ if(isset($_GET['Dir']) && isset($_GET['Alldir'])){
     $relitaveURL = $_GET['Dir'];
 }else{
 	$currentURL = '../../'.$_SESSION['Home'];
-	$relitaveURL = '/';
+	$relitaveURL = '';
 }
 /*
 *sees if any commands have been invoced and
@@ -64,10 +64,11 @@ if(isset($_GET['mkdir'])){
 	filesSystem::makeDirectory($currentURL ,$_GET['mkdir']);
 	echo '<html><body><script>window.location.href = "files.php?Dir='.$relitaveURL.'";</script></body></html>';
 }else if(isset($_GET['rmdir'])){
-	filesSystem::delDirectory($currentURL ,$_GET['rmdir']);
+	filesSystem::delDirectory($currentURL.'/'.$_GET['rmdir']);
 	echo '<html><body><script>window.location.href = "files.php?Dir='.$relitaveURL.'";</script></body></html>';
 }else if(isset($_GET['cpDir']) && isset($_GET['cpDest'])){
-    filesSystem::copyFile($_GET['cpDir'], $_GET['cpDest']);
+    filesSystem::copyFile('../../'.$_SESSION['Home'].$_GET['cpDir'], '../../'.$_SESSION['Home'].$_GET['cpDest']);
+    filesSystem::delDirectory('../../'.$_SESSION['Home'].$_GET['cpDir']);
     echo '<html><body><script>window.location.href = "files.php?Dir='.$relitaveURL.'";</script></body></html>';
 }
 

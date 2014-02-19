@@ -140,11 +140,11 @@ class filesSystem{
 	*this function takes two poramitors a url and a directo
 	*name. this function deleats a drectory
 	*/ 
-	function delDirectory($URL, $name){
-		if(is_dir($URL.'/'.$name.'/')){
-			system('rm -rf '.$URL.'/'.$name.'/');
+	function delDirectory($URL){
+		if(is_dir($URL)){
+			system('rm -rf '.$URL);
 		}else{
-			system('rm '.$URL.$name, $runval);
+			system('rm '.$URL, $runval);
 		}
 	}
     /*
@@ -155,7 +155,6 @@ class filesSystem{
     function copyFile($source, $dest){
         // Simple copy for a file
         exec("cp -R ".$source." ".$dest);
-        return exec("cp -R ".$source." ".$dest);
     }
 }
 ?>
