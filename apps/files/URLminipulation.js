@@ -59,8 +59,6 @@ function URL(rawPageURL){
 	*/
 	this.removeLastSegment = function(Directory){
 		var LastIndex = Directory.lastIndexOf('/');
-		alert(LastIndex);
-
 		if(LastIndex === -1){
 			return false;
 		}else{

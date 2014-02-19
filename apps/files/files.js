@@ -30,8 +30,14 @@ $(document).ready(function(){
         $(".iconHolder").droppable({ accept: ".iconHolder", //only lets other iconHolder's be dropped
             drop: function(event, ui){//function is triggered when draggable of iconHolder is dragged over
                 DropDir = $(this).find("p").text();
-                alert(DirName);
-
+                var currentDirectory = GETobject.findGET("Dir", GETobject.getGETs());
+                if(currentDirectory === false) currentDirectory = '';
+                var finalURL = GETobject.sendGET([
+                        ['Dir', currentDirectory], 
+                        ['cpDir', currentDirectory+'/'+DirName],
+                        ['cpDest', currentDirectory+'/'+DropDir]
+                    ]);
+                window.location.href = finalURL;
             }
         });
         $("#UpDir").droppable({ accept: ".iconHolder",
@@ -45,7 +51,6 @@ $(document).ready(function(){
                 			['cpDir', CurrentURL+'/'+DirName],
                 			['cpDest', preveiusURL]
                 		]);
-                    alert(finalURL);
                 	window.location.href = finalURL;
                 }
             }
