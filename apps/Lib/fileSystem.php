@@ -1,9 +1,15 @@
 <?php
 	
-	//require '../files/file.php';
+	require_once '../files/file.php';
 	/**
-	* By Giovanni Rescigno - Clone Computers 
-	* GPL 2.0 free software
+	******************************************
+	* By Giovanni Rescigno - Clone Computers *
+	* GPL 2.0 free software					 *
+	******************************************
+	* DISCRIPTION:						 
+	* this class is the librarry interface for the file system it 
+	* it alows you to both miniplate the file system and add new types
+	* of files. 
 	*/
 
 	class fileSystemInterface{
