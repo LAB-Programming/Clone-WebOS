@@ -11,12 +11,14 @@ system
 
 include 'file.php';
 include '../../cloneMarkUp.php';
+include '../Lib/fileSystem.php';
 
 session_start();
 $relitaveURL = '';
 $currentURL = '';
 $types = array();
 $files = array();
+$fileInterface = new fileSystemInterface();
 
 /*
 this function takes in one vaurable which holds an array of all of the files in a given
@@ -61,28 +63,17 @@ if(isset($_GET['Dir']) && isset($_GET['Alldir'])){
 *than runs them though the fileSystem class
 */
 if(isset($_GET['mkdir'])){
-	filesSystem::makeDirectory($currentURL ,$_GET['mkdir']);
+	$fileInterface->addFolder($relitaveURL ,$_GET['mkdir']);
 	echo '<html><body><script>window.location.href = "files.php?Dir='.$relitaveURL.'";</script></body></html>';
 }else if(isset($_GET['rmdir'])){
-	filesSystem::delDirectory($currentURL.'/'.$_GET['rmdir']);
+	$fileInterface->deleteFile($relitaveURL.'/'.$_GET['rmdir']);
 	echo '<html><body><script>window.location.href = "files.php?Dir='.$relitaveURL.'";</script></body></html>';
 }else if(isset($_GET['cpDir']) && isset($_GET['cpDest'])){
-    filesSystem::copyFile('../../'.$_SESSION['Home'].$_GET['cpDir'], '../../'.$_SESSION['Home'].$_GET['cpDest']);
-    filesSystem::delDirectory('../../'.$_SESSION['Home'].$_GET['cpDir']);
+    $fileInterface->moveDirectory($_GET['cpDir'], $_GET['cpDest']);
     echo '<html><body><script>window.location.href = "files.php?Dir='.$relitaveURL.'";</script></body></html>';
 }
 
-$types_file_handle = new MarkUpFile('types.txt');
-$types_file_arrayList = $types_file_handle->Read();
-$types_file_handle->Close();
-//exec('ls '.$currentURL, $raw_dir_data);
-$types = filesSystem::getTypes();
-$files = filesSystem::getFiles($currentURL, $types, $relitaveURL);
-/*foreach($raw_dir_data as $singleEnt){
-$files = array_merge($files, array(new file($relitaveURL, $singleEnt, $types)));
-}*/
-
+$files = $fileInterface->listDirectorys($relitaveURL);
 renderGUI($files, $relitaveURL);
-
 
 ?>

@@ -4,7 +4,7 @@ include '../../cloneMarkUp.php';
 include '../../mainUser.php';
 
 function crateFileSystem(){
-	shell_exec("mkdir ../../home/".$_POST['userName']."/");
+	mkdir("../../home/".$_POST['userName']."/", 0777);
 }
 if(isset($_POST['userName'])){
 	$newUser = new UsersInfo("../../users.txt");

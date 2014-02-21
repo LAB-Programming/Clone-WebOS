@@ -1,8 +1,8 @@
 segment{
--../../apps/files/files.php
+-../files/files.php
 -NONE
 -../../images/folder.png
 segment{
--../../apps/text/text.php
+-../text/text.php
 -txt
 -../../images/Documents.png
