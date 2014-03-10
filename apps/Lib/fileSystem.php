@@ -32,7 +32,11 @@
 			$fullDirectory = $this->UserHomeDir.$Direcotry;
 			$fullDest = $this->UserHomeDir.$Dest;
 
-			filesSystem::copyFile($fullDirectory, $fullDest);
+			if(is_dir($fullDest)){
+        		exec("cp -R ".$fullDirectory." ".$fullDest);
+        	}else{
+        		return false;
+        	}
 		}
 		/*
 		* this function takes in two premitors that are strings one
@@ -118,7 +122,7 @@
 		* inquestion and the icon. this function adds a new file type
 		* to the list of file types
 		*/
-		function addType($appLocation, $extention, $iconLocation){
+		function addFileType($appLocation, $extention, $iconLocation){
 
 			$fullAppLocation = '../'.$appLocation;
 			$fullIconLocation = '../../images/'.$iconLocation;

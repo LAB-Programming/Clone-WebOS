@@ -5,7 +5,7 @@
 */
 class todo{
 
-	function __construct($message, ){
+	function __construct(){
 
 	}
 }
