@@ -1,4 +1,24 @@
 <?php
+
+/* * * * * * * * * * * * * * * * * * * * * * *
+ *	By giovanni Rescigno - Clone Computers   *								 
+ *	GPL 2.0 Free software				     *					
+ * * * * * * * * * * * * * * * * * * * * * * *
+ * Disciption: runable 						 *
+ * runable is an interface that requiers a   *
+ * single funciton that runs a sciprt when   *
+ * the events time is up                     *
+ * * * * * * * * * * * * * * * * * * * * * * */
+
+interface runable{
+	//returns what the scirpt returns
+	public function runScript();
+	public function ImportTriggerFile();
+	public function getRecord();
+	public function hasExpired();
+	
+}
+
 /* * * * * * * * * * * * * * * * * * * * * *
  * By Giovanni Rescigno - Clone Computers  *
  * GPL 2.0 Free software 				   * 
@@ -9,13 +29,14 @@
  * sperlised funtions for diffrent perups  * 
  * * * * * * * * * * * * * * * * * * * * * */
 
-class Event{
+class Event implements runable{
 
 	private $triggerFunction; 
 	private $triggerFile; 
 	private $applicantionName;
 	private $timeExpire;//tells you when he event should go off
 	private $EventId = 'unset';//this is the defalt id value
+	private $hasImported = false;
 
 
 
@@ -60,8 +81,10 @@ class Event{
 	* file must be included in order for this to work 
 	* if it is not it wont work.
 	*/
-	public function runTriger(){
-		$this->triggerFunction();
+	public function runScript(){
+		if($this->hasImported){//checks to see if the trigger file is imported
+			return call_user_func($this->triggerFunction);
+		}else return false;//other wise returns false
 	}
 	/**
 	* this function sets the id to a value spified this function
@@ -72,11 +95,28 @@ class Event{
 		$this->EventId = $idVal;
 	}
 	/**
-	* this function returns the trigger file so that the system seceduler
-	* can see it and than import it
+	* this function returns nothing nor takes any thing it simply
+	* imports the 
 	*/
-	public function getTriggerFile(){
-		return $this->triggerFile;
+	public function ImportTriggerFile(){
+		$this->hasImported = true;
+		require_once $this->triggerFile;
+	}
+	/**
+	* this function returns the name of the trigger function
+	* returns a string
+	*/
+	public function getTriggerFunction(){
+		return $this->triggerFunction;
+	}
+	/**
+	* this funciton reutnrs true if this event has expired 
+	* and false if it has not yet expired
+	*/
+	public function hasExpired(){
+		if($this->hasImported){
+			return ($this->timeExpire <= time());
+		}else return false;
 	}
 }
 

@@ -1,5 +1,6 @@
 <?php
 	require_once '../system-Scheduler/systemEvent.php';
+	require_once '../system-Scheduler/privateEvent.php';
 
    /* * * * * * * * * * * * * * * * * * * * * * * * * * * *
 	* By Giovanni Rescigno - Clone Computers   			  *
@@ -65,9 +66,11 @@
 						$mergableObject->setId((int)$event[0]);
 						$EventObjectArray = array_merge($EventObjectArray, array($mergableObject));
 						break;
-					//case 'funcArgs':
+					case 'privateEvent':
 
-					//	break;
+
+
+						break;
 				}
 			}
 			return $EventObjectArray;
@@ -92,7 +95,7 @@
 		* again
 		*/
 		private function saveCurrentEvents(){
-			
+
 			$EventfileString = '';
 			foreach($this->eventList as $eventObj){
 				$EventfileString = $EventfileString.$eventObj->getRecord();
@@ -102,7 +105,7 @@
 
 			if(flock($fileHandle, LOCK_EX)){//if a lock can be establihsed
 
-				ftruncate($fileHandle, 0);
+				ftruncate($fileHandle, 0);//clears the file
 				fwrite($fileHandle, $EventfileString);
 				fflush($fileHandle);//flushes the file input
 				flock($fileHandle, LOCK_UN); //unlocks the file
@@ -114,6 +117,44 @@
 				$this->saveCurrentEvents();//yes i know that i am uesing recurtion dont freak out plz
 
 			}
-		}		
+		}
+		/**
+		* this funciton takes nothing and returns all of 
+		* the expired events as objects
+		*/
+		public function getEvents(){
+
+			$this->eventList = $this->getAllEvents();
+			$returnArray = array();
+
+			foreach($this->eventList as $singleEvent){
+				
+				$singleEvent->ImportTriggerFile();
+				
+				if($singleEvent->hasExpired()){
+					$returnArray = array_merge($returnArray, array($singleEvent));
+				}
+			}
+			return $returnArray;
+		}
+		/**
+		* this function takes in the user name and
+		* returns the all the expired events with the
+		* speified user
+		*/		
+		public function getEvent($user){
+			$this->eventList = $this->getAllEvents();//refreches the list of events
+			$returnArray = array();
+
+			foreach($this->eventList as $singleEvent){
+
+				$singleEvent->ImportTriggerFile();
+
+				if($singleEvent->hasExpired() && ('private' == $singleEvent->getType())){
+					$returnArray = array_merge($returnArray, array($singleEvent));
+				}
+			}
+			return $returnArray;
+		}
 	}
 ?>
