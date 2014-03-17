@@ -12,10 +12,12 @@
 
 interface runable{
 	//returns what the scirpt returns
-	public function runScript();
-	public function ImportTriggerFile();
-	public function getRecord();
-	public function hasExpired();
+	public function runScript();//a methoed that returns something when the time has expired
+	public function ImportTriggerFile();//imports the file that the trigger function is located
+	public function getRecord();//gets a recored of event so i can be stored in a text file
+	public function hasExpired();//checks if the event has expired
+	public function getApplicationName();//gets the name of the applicaion that has spawned the event
+	public function getType();//gets the type of the Event
 	
 }
 
@@ -95,12 +97,26 @@ class Event implements runable{
 		$this->EventId = $idVal;
 	}
 	/**
+	* this method returs the id of this event 
+	* so that the event knows who it is 
+	*/
+	public function getId(){
+		return $this->EventId;
+	}
+	/**
 	* this function returns nothing nor takes any thing it simply
 	* imports the 
 	*/
 	public function ImportTriggerFile(){
 		$this->hasImported = true;
 		require_once $this->triggerFile;
+	}
+	/**
+	* this method returns the trigger file url so that i can be
+	* imported and recored
+	*/
+	public function getTriggerFile(){
+		return $this->triggerFile;
 	}
 	/**
 	* this function returns the name of the trigger function
@@ -117,6 +133,13 @@ class Event implements runable{
 		if($this->hasImported){
 			return ($this->timeExpire <= time());
 		}else return false;
+	}
+	/**
+	* this method returns the time at which the event will 
+	* expire. 
+	*/
+	public function getTime(){
+		return $this->timeExpire;
 	}
 }
 

@@ -66,10 +66,10 @@
 						$mergableObject->setId((int)$event[0]);
 						$EventObjectArray = array_merge($EventObjectArray, array($mergableObject));
 						break;
-					case 'privateEvent':
-
-
-
+					case 'private':
+						$mergableObject = new privateEvent($event[2], $event[3], $event[4], (int)$event[5], $event[6]);
+						$mergableObject->setId((int)$event[0]);
+						$EventObjectArray = array_merge($EventObjectArray, array($mergableObject));
 						break;
 				}
 			}
@@ -130,27 +130,8 @@
 			foreach($this->eventList as $singleEvent){
 				
 				$singleEvent->ImportTriggerFile();
-				
+
 				if($singleEvent->hasExpired()){
-					$returnArray = array_merge($returnArray, array($singleEvent));
-				}
-			}
-			return $returnArray;
-		}
-		/**
-		* this function takes in the user name and
-		* returns the all the expired events with the
-		* speified user
-		*/		
-		public function getEvent($user){
-			$this->eventList = $this->getAllEvents();//refreches the list of events
-			$returnArray = array();
-
-			foreach($this->eventList as $singleEvent){
-
-				$singleEvent->ImportTriggerFile();
-
-				if($singleEvent->hasExpired() && ('private' == $singleEvent->getType())){
 					$returnArray = array_merge($returnArray, array($singleEvent));
 				}
 			}
