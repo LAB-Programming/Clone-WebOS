@@ -31,9 +31,7 @@ function renderGUI($filesArray, $relitaveURL){
 	$file_icons = '';
 	foreach($filesArray as $fileInstance){
 	        $file_icons = $file_icons.'<div class="iconHolder">
-	<table><tr><td id="top"><a href="files.php?rmdir='.$fileInstance->getname().'&Dir='.$relitaveURL.'">
-	<center><button class="del">Delete</button><center>
-	</a></td></tr><tr><td><a href='.$fileInstance->getType()->getReply($fileInstance->getURL()).'
+	<table><tr><td><a href='.$fileInstance->getType()->getReply($fileInstance->getURL()).'
 	><div class="appIcon" ><center><img src="'.$fileInstance->getType()->getImage().'">
 	</center><p>'.$fileInstance->getname().'</p></div></a></tr></td></table></div>';
 	}
