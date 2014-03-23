@@ -16,14 +16,21 @@
 	<table>
 		<tr>
 		<td id="tools"><div id="toolBar">
-            <center><a href="../../index.php"><button>Home</button></a></center>
+			<a href="files.php?Dir=[%last%]"><button class="navButton">
+				<img src="../../images/darkBackArrow.png" width="30" height="30">
+			</button></a>
+          	<h2>Add Folder:</h2>
 			<form type="hidden" action="files.php" method="get">
 				<input type="hidden" name = "Dir" value = "{/dir/}">
 				<center><table><tr><td><input class="text" type="text" placeholder="new folder" name="mkdir">
 				</td><td><button id="small">+</button></td></tr></table></center>
 			</form>
+			<h2>Favorites:</h2>
+			
+
 		</div></form>
-		<td id="fileCons"><div id="appCon">
+		<td id="fileCons">
+		<div id="appCon">
 		<!--<div class="appIcon" ><center><img src="../../images/folder.png"></center><p>test</p></div>-->
 			[%allfiles%]
 		</div></td>

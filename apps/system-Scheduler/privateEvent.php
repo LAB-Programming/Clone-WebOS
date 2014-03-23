@@ -2,6 +2,15 @@
 
 	require_once 'systemEvent.php';
 
+	/* * * * * * * * * * * * * * * * * * * * * *
+	 * By: Giovanni Rescigno - Clone Computers *
+	 * * * * * * * * * * * * * * * * * * * * * * 
+	 * Discrption: this type of event is only  * 
+	 * visable to the user that created it     *
+	 * so no other user can see the type of    *
+	 * event  								   *
+	 * * * * * * * * * * * * * * * * * * * * * */
+
 	class privateEvent extends Event implements runable{
 		
 		private $userName;

@@ -20,6 +20,15 @@ $types = array();
 $files = array();
 $fileInterface = new fileSystemInterface();
 
+
+function getPrevURL($relitaveURL){
+	$URLarray = split("/", $relitaveURL);
+	$newString = "";
+	for($i = 1; $i < count($URLarray)-1; $i++){
+		$newString = $newString."/".$URLarray[$i];
+	}
+	return $newString;
+}
 /*
 this function takes in one vaurable which holds an array of all of the files in a given
 directory than turns each of them in to a icon of html and then renders the file GUI
@@ -38,6 +47,7 @@ function renderGUI($filesArray, $relitaveURL){
 
 	$file_GUI = str_replace('[%allfiles%]', $file_icons, $file_GUI);
 	$file_GUI = str_replace('{/dir/}', $relitaveURL, $file_GUI);
+	$file_GUI = str_replace('[%last%]', getPrevURL($relitaveURL), $file_GUI);
 	echo $file_GUI;
 }
 

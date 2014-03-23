@@ -18,6 +18,8 @@ interface runable{
 	public function hasExpired();//checks if the event has expired
 	public function getApplicationName();//gets the name of the applicaion that has spawned the event
 	public function getType();//gets the type of the Event
+	public function setId($idVal);//changes the id
+	public function getId();//gets he id
 	
 }
 

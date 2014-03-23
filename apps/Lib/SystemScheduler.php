@@ -88,6 +88,24 @@
 
 		}
 		/**
+		* this function takes in the id of a Event that you want 
+		* to remove 
+		*/
+		public function removeEvent($removeId){
+			$this->eventList = $this->getAllEvents();
+			$newEventList = array();
+			$idCounter = 0;
+			foreach($this->eventList as $event){
+				if(!$event->getId() != $removeId){
+					$idCounter++;
+					$event->setId($idCounter);
+					$newEventList = array_merge($newEventList, $event);
+				}
+			}
+			$this->eventList = $newEventList;
+			$this->saveCurrentEvents();
+		}
+		/**
 		* this function save the current events in to the
 		* event text file. 
 		* @peram newEvent - this takes in the new event
