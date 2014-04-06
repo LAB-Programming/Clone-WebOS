@@ -1,5 +1,5 @@
 segment{
--users
+-Add User
 -images/contacts.png
 -apps/users/users.php
 segment{

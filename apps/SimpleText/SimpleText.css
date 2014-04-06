@@ -1,0 +1,27 @@
+#topBar{
+	width: 99.25%;
+	height: 50px;
+
+	margin-right: auto;
+	margin-left: auto;
+
+	padding-left:5px;
+	padding-right:5px;
+
+	background-color: #EEEEEE;
+}
+.jqte{
+
+	border-radius: 0px;
+	border: 0px;
+	margin: 0px;
+	background-color: lightgray;
+}
+.jqte_editor{
+
+	max-width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	height: 100%;
+
+}

@@ -9,7 +9,7 @@ class User{
 	function __construct($NewUserName, $NewPasswordHash, $NewPromitions){
 		$this->userName = $NewUserName;//sets all of the instance varuables
 		$this->PasswordHash = $NewPasswordHash;
-		$this->homeFolder = "home/".$this->userName."/";
+		$this->homeFolder = "home/".$this->userName;
 		$this->Promitions = $NewPromitions;
 	}
 	function createPublicSession(){ //this function creates _SESSION vauables for public use you do this to set the active user

@@ -6,3 +6,7 @@ segment{
 -todo
 -images/todo.png
 -todo/todoMain.php
+segment{
+-Simple Text
+-images/Documents.png
+-SimpleText/main.php
