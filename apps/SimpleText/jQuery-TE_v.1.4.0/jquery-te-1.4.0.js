@@ -93,7 +93,7 @@
 			'placeholder'	: false,
 			'br'			: true,
 			'p'				: true,
-
+			
 			// events
 			'change'		: "",
 			'focus'			: "",

@@ -1,15 +1,16 @@
 <?php
 	
 	require_once '../files/file.php';
+	require_once '../../cloneMarkUp.php';
 	/**
 	******************************************
 	* By Giovanni Rescigno - Clone Computers *
 	* GPL 2.0 free software					 *
 	******************************************
 	* DISCRIPTION:						 
-	* this class is the librarry interface for the file system it 
+	* this class is the librarry for the file system it 
 	* it alows you to both miniplate the file system and add new types
-	* of files. 
+	* of file objects. 
 	*/
 
 	class fileSystemInterface{
@@ -131,6 +132,43 @@
 			$types_file_handle->Write(false, array(array($fullAppLocation, $extention, $fullIconLocation)));
 			$types_file_handle->Close();
 
+		}
+		/*
+		* this function takes in a dirtory and a file name and checeks weather or
+		* the file exists. if the file exists this method returns true if the 
+		* file dose not exist it returns false. 
+		*/
+		function doseFileExist($fileName, $directory){
+			foreach($this->listDirectorys($directory) as $fileObj){
+				if($fileObj->getname() == $fileName){
+					return true;
+				}
+			}
+			return false;
+		}
+		/*
+		* if given a file path this method will return the direcotry that
+		* contains the file in question. 
+		*/
+		function getFileDirectory($URLString){
+			for($i = strlen($URLString); $i > 0; $i--){
+				if(!empty($URLString[$i]) && $URLString[$i] === '/'){
+					return substr($URLString, 0, $i);
+				}
+			}
+			return -1;
+		}
+		/*
+		* if gvein a file path this method will return the file name 
+		* that the file path is pointing to.
+		*/
+		function getFileName($URLString){
+			for($i = strlen($URLString)-1; $i > 0; $i--){
+				if(!empty($URLString[$i]) && $URLString[$i] == '/'){
+					return substr($URLString, $i+1, strlen($URLString)-1);
+				}
+			}
+			return -1;
 		}
 	}
 ?>

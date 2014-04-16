@@ -23,5 +23,13 @@
 	margin-left: auto;
 	margin-right: auto;
 	height: 100%;
-
+}
+#save{
+	width: 100px;
+	height: 40px;
+	margin-top: 5px;
+	margin-bottom: auto;
+	margin-left: 5px;
+	position:relative;
+    float:right;
 }
