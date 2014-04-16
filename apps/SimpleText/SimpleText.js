@@ -7,9 +7,9 @@ $( document ).ready(function() {
 	$('.editor').jqte();//init the rich text editor
 
 	$('.realSave').click(function() {
-		
+
 		var text = $(".jqte_editor").html();
-		var fileContent = $(".text").attr("value");
+		var fileContent = $(".text").val();
 
 		$.post("saveScirpt.php", {
 			SAVE : fileContent,
