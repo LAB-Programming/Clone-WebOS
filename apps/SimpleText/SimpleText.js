@@ -8,8 +8,11 @@ $( document ).ready(function() {
 
 	$('.realSave').click(function() {
 		var text = $(".jqte_editor").text();
+		var fileContent = $(".text").attr("value");
+		alert(fileContent);
 		$.post("saveScirpt.php", {
-			SAVE : text,
+			SAVE : fileContent,
+			Cont : text,
 			Dir : filePath, 
 		});
 	});
