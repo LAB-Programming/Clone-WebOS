@@ -3,6 +3,6 @@ segment{
 -NONE
 -../../images/folder.png
 segment{
--../simpleText/main.php
+-../SimpleText/main.php
 -txt
 -../../images/Documents.png
