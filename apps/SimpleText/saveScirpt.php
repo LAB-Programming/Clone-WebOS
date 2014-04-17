@@ -14,7 +14,6 @@
 		fclose($file_Handle);
 	}
 
-	error_log($_POST['Dir']);
 	if($_POST['Dir'] != "false" && $_POST['Dir'] != ''){
 		$fileDirectory = $file_system_Handle->getFileDirectory($_POST['Dir']);
 		$fileName = $_POST['SAVE'];

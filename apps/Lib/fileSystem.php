@@ -156,7 +156,6 @@
 					return substr($URLString, 0, $i);
 				}
 			}
-			return -1;
 		}
 		/*
 		* if gvein a file path this method will return the file name 
@@ -168,7 +167,6 @@
 					return substr($URLString, $i+1, strlen($URLString)-1);
 				}
 			}
-			return -1;
 		}
 	}
 ?>
