@@ -33,19 +33,6 @@
 		$directoryName = $file_System_Handle->getFileName($FileURL);
 		$filePath = $file_System_Handle->getFileDirectory($FileURL);
 	}
-	/*if(isset($_GET['SAVE'])){
-		if(strpos($FileURL,'.txt') !== false){
-			$directoryName = $_GET['SAVE'];//the FileName will always be what is held in the File name entry
-			$filePath = $file_System_Handle->getFileDirectory($FileURL);
-			$FileURL = $filePath.$directoryName;
-		}else{
-			if(!doseFileExist($_GET['SAVE'], $filePath)){
-				$directoryName = $_GET['SAVE'];
-				$FileURL = $filePath.$directoryName;
-			}
-			//implent something that will deal with files of the same name
-		}
-	}*/	
 
 	$EchoString = str_replace('{File Contents}', $fileString, $EchoString);
 	$EchoString = str_replace('{fileName}', $directoryName, $EchoString);

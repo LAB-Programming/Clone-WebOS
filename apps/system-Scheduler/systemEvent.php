@@ -133,7 +133,7 @@ class Event implements runable{
 	*/
 	public function hasExpired(){
 		if($this->hasImported){
-			return ($this->timeExpire <= time());
+			return ($this->getTime() <= time());
 		}else return false;
 	}
 	/**

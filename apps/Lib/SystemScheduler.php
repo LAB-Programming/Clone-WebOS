@@ -1,6 +1,8 @@
 <?php
 	require_once '../system-Scheduler/systemEvent.php';
 	require_once '../system-Scheduler/privateEvent.php';
+	require_once '../system-Scheduler/PrivateNotification.php';
+	require_once '../system-Scheduler/notificationsEvent.php';
 
    /* * * * * * * * * * * * * * * * * * * * * * * * * * * *
 	* By Giovanni Rescigno - Clone Computers   			  *
@@ -71,6 +73,17 @@
 						$mergableObject->setId((int)$event[0]);
 						$EventObjectArray = array_merge($EventObjectArray, array($mergableObject));
 						break;
+					case 'PublicNotificationEvent':
+						$mergableObject = new PublicNotificationEvent($event[2], $event[3], $event[4], (int)$event[5], $event[7]);
+						$mergableObject->setId((int)$event[0]);
+						$mergableObject->setRank((int)$event[6]);
+						$EventObjectArray = array_merge($EventObjectArray, array($mergableObject));
+					case 'PrivateNotificationEvent':
+						$mergableObject = new PrivateNotificationEvent($event[8], $event[4], (int)$event[5], $event[2], $event[3], 
+							$event[7]);
+						$mergableObject->setId((int)$event[0]);
+						$mergableObject->setRank((int)$event[6]);
+						$EventObjectArray = array_merge($EventObjectArray, array($mergableObject));
 				}
 			}
 			return $EventObjectArray;
