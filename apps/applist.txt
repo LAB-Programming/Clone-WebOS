@@ -10,3 +10,7 @@ segment{
 -Simple Text
 -images/Documents.png
 -SimpleText/main.php
+segment{
+-Image Viewer
+-images/Photo.png
+-Image_Viewer/main.php

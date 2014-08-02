@@ -2,6 +2,7 @@
 <head>
 	<title>files</title>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <script type="text/javascript"  src="../Lib/URLminipulation.js"></script>
     <script type="text/javascript" src="files.js"></script>
@@ -14,8 +15,8 @@
 	<h1>files</h1>
 	<table>
 		<tr>
-		<td id="tools"><div id="toolBar">
-			<a href="files.php?Dir=[%last%]"><button class="navButton">
+		<td id="tools"><div id="toolBar"><div id="contentWraper">
+			<a id="navLink" href="files.php?Dir=[%last%]"><button class="navButton">
 				<img src="../../images/darkBackArrow.png" width="30" height="30">
 			</button></a>
           	<h2>Add Folder:</h2>
@@ -25,7 +26,7 @@
 				</td><td><button id="small">+</button></td></tr></table></center>
 			</form>
 			<h2>Favorites:</h2>
-		</div></form>
+		</div</div></form>
 		<td id="fileCons">
 		<div id="appCon">
 		<!--<div class="appIcon" ><center><img src="../../images/folder.png"></center><p>test</p></div>-->

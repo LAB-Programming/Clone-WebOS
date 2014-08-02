@@ -6,3 +6,7 @@ segment{
 -../SimpleText/main.php
 -txt
 -../../images/Documents.png
+segment{
+-../Image_Viewer/main.php
+-png
+-../../images/Photo.png
