@@ -51,7 +51,6 @@ function renderGUI($filesArray, $relitaveURL){
 	echo $file_GUI;
 }
 
-
 /*
 * reads all of the navagation stuffs
 */

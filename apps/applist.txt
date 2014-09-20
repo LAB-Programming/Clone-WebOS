@@ -14,3 +14,7 @@ segment{
 -Image Viewer
 -images/Photo.png
 -Image_Viewer/main.php
+segment{
+-Search
+-images/mag.png
+-google/index.html

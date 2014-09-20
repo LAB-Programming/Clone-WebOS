@@ -78,12 +78,14 @@
 						$mergableObject->setId((int)$event[0]);
 						$mergableObject->setRank((int)$event[6]);
 						$EventObjectArray = array_merge($EventObjectArray, array($mergableObject));
+						break;
 					case 'PrivateNotificationEvent':
 						$mergableObject = new PrivateNotificationEvent($event[8], $event[4], (int)$event[5], $event[2], $event[3], 
 							$event[7]);
 						$mergableObject->setId((int)$event[0]);
 						$mergableObject->setRank((int)$event[6]);
 						$EventObjectArray = array_merge($EventObjectArray, array($mergableObject));
+						break;
 				}
 			}
 			return $EventObjectArray;

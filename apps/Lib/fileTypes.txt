@@ -8,5 +8,13 @@ segment{
 -../../images/Documents.png
 segment{
 -../Image_Viewer/main.php
+-gif
+-../../images/Photo.png
+segment{
+-../Image_Viewer/main.php
+-jpg
+-../../images/Photo.png
+segment{
+-../Image_Viewer/main.php
 -png
 -../../images/Photo.png
