@@ -84,9 +84,11 @@ $(document).ready(function(){
         var $lefty = $('#tools');
 
         $(".appIcon").css( "-webkit-filter", "blur(5px)" );
+        $(".appIcon").css( "filter", "url(../../themes/blur.svg#blur)" );
         $(".appIcon").css( "filter", "blur(5px)" );
 
         $("h1").css( "-webkit-filter", "blur(5px)" );
+        $("h1").css( "filter", "url(../../themes/blur.svg#blur)" );
         $("h1").css( "filter", "blur(5px)" );
 
         /*$lefty.animate({
@@ -103,9 +105,11 @@ $(document).ready(function(){
         var $lefty = $('#tools');
 
         $(".appIcon").css( "-webkit-filter", "blur(0px)" );
+         $(".appIcon").css( "filter", "none" );
         $(".appIcon").css( "filter", "blur(0px)" );
 
-        $("h1").css( "-webkit-filter", "blur(0px)" );;
+        $("h1").css( "-webkit-filter", "blur(0px)" );
+        $("h1").css( "filter", "none" );
         $("h1").css( "filter", "blur(0px)" );
 
         $lefty.animate({
@@ -123,9 +127,11 @@ $(document).ready(function(){
             var $lefty = $('#tools');
 
             $(".appIcon").css( "-webkit-filter", "blur(5px)" );
+            $(".appIcon").css( "filter", "url(../../themes/blur.svg#blur)" );
             $(".appIcon").css( "filter", "blur(5px)" );
 
             $("h1").css( "-webkit-filter", "blur(5px)" );
+            $("h1").css( "filter", "url(../../themes/blur.svg#blur)" );
             $("h1").css( "filter", "blur(5px)" );
 
             $lefty.animate({
@@ -139,9 +145,11 @@ $(document).ready(function(){
             var $lefty = $('#tools');
 
             $(".appIcon").css( "-webkit-filter", "blur(0px)" );
+            $(".appIcon").css( "filter", "none" );
             $(".appIcon").css( "filter", "blur(0px)" );
 
             $("h1").css( "-webkit-filter", "blur(0px)" );;
+            $("h1").css( "filter", "none" );
             $("h1").css( "filter", "blur(0px)" );
 
             $lefty.animate({
