@@ -25,7 +25,10 @@ $(document).ready(function(){
         //turns all of the .iconHolder's in to a draggable
         $(".iconHolder").draggable({ revert: true , stack: "div",
             start: function( event, ui ) {
-                DirName = $(this).find("p").text();
+
+                var re = new RegExp(" ", 'g');
+                DirName = $(this).find("p").text().replace(re, "_");
+                
                 $("#UpDir").show();
                 $("#downDir").show();  
             },
@@ -36,7 +39,7 @@ $(document).ready(function(){
         });
         $(".iconHolder").droppable({ accept: ".iconHolder", tolerance: "touch",//only lets other iconHolder's be dropped
             drop: function(event, ui){//function is triggered when draggable of iconHolder is dragged over
-                DropDir = $(this).find("p").text();
+                DropDir = $(this).find("p").text().replace(" ", "_");
                 var currentDirectory = GETobject.findGET("Dir", GETobject.getGETs());
                 if(currentDirectory === false) currentDirectory = '';
                 var finalURL = GETobject.sendGET([

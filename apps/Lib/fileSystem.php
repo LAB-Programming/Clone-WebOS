@@ -67,7 +67,6 @@
 			$fullUrl = $this->UserHomeDir.$filePath;
 
 			exec('ls '.$fullUrl, $raw_dir_data);
-
 			$files = array();
 			foreach($raw_dir_data as $singleEnt){
 				$files = array_merge($files, array(new file($filePath, $singleEnt, $fileTypes)));
@@ -97,6 +96,9 @@
 			foreach($raw_dir_data as $dircheck){
 				if($dircheck == $folderName){return 0;}
 			}
+
+			//makes shure there are no spaces
+			$folderName = str_replace(" ", "_", $folderName);
 			mkdir($this->UserHomeDir.$pathToHousingFolder.'/'.$folderName.'/', 0777);
 		}
 		/*

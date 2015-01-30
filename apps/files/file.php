@@ -74,7 +74,8 @@ class file{
 	and then returns it as a string
 	*/
 	function getname(){
-		return $this->name;
+		return str_replace("_", " ", $this->name);
+		//return $this->name;
 	}
 	/*
 	this function retruns the full url of the file or directory so that you 
